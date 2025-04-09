@@ -15,7 +15,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }elseif($_SERVER["REQUEST_METHOD"] == "GET"){
     echo "Solicitação inválida! <br>";
 }
-
+//tratamento emal 
 if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
     echo "E-mail válido: $email";
 } else {
