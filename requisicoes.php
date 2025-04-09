@@ -16,6 +16,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     echo "Solicitação inválida! <br>";
 }
 
+if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    echo "E-mail válido: $email";
+} else {
+    echo "E-mail inválido.";
+}
+
 if (preg_match('/[0-9]', $nome)){
     echo "Erro, o nome não pode conter números";
 }else{
