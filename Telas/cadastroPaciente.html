@@ -41,10 +41,9 @@
 <body>
     <div class="container mt-4">
         <form action="requisicoes.php" method="post">
-        <h1 class="text-center">Cadastro de Pacientes - LEAC</h1>
+            <h1 class="text-center">Cadastro de Pacientes - LEAC</h1>
 
-        <div class="card p-4 mt-3">
-            <form id="cadastroForm">
+            <div class="card p-4 mt-3">
                 <!-- Nome Completo -->
                 <div class="mb-3">
                     <label for="nome" class="form-label">Nome completo:</label>
@@ -103,22 +102,22 @@
                 <!-- Exames Solicitados -->
                 <div class="mb-3">
                     <label class="form-label">Exames solicitados:</label><br>
-                    <input type="checkbox" value="Microbiologia" id="ex1" name="exame">
+                    <input type="checkbox" value="Microbiologia" id="ex1" name="exame[]">
                     <label for="ex1">Microbiologia</label><br>
-                    <input type="checkbox" value="Parasitologia" id="ex2" name="exame">
+                    <input type="checkbox" value="Parasitologia" id="ex2" name="exame[]">
                     <label for="ex2">Parasitologia</label><br>
-                    <input type="checkbox" value="Hematologia" id="ex3" name="exame">
+                    <input type="checkbox" value="Hematologia" id="ex3" name="exame[]">
                     <label for="ex3">Hematologia</label><br>
-                    <input type="checkbox" value="Bioquímica" id="ex4" name="exame">
+                    <input type="checkbox" value="Bioquímica" id="ex4" name="exame[]">
                     <label for="ex4">Bioquímica</label><br>
-                    <input type="checkbox" value="Urinálise" id="ex5" name="exame">
+                    <input type="checkbox" value="Urinálise" id="ex5" name="exame[]">
                     <label for="ex5">Urinálise</label><br>
                 </div>
 
                 <!-- Botão de Enviar -->
                 <button type="submit" class="btn btn-primary mt-3">Enviar</button>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 
     <script>
