@@ -1,120 +1,170 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Formulário de Exames</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body class="">
-  <div class="container py-5">
-    <div class="card shadow-lg rounded-4" style="border: 2px solid #0c4299;">
-      <div class="card-body">
-        <p>ID: 123gh4</p>
-        <h2 class="y mb-4" style="color: #0c4299;">Exames Laboratoriais</h2>
+<body>
+    <div class="container d-flex justify-content-center align-items-start py-5">
+        <div class="card shadow" style="width: 50rem;">
+            <div class="card-body">
+                <h1 class="card-title" style="color: #0c4299;">EXAMES LABORATORIAIS</h1>
+                <form class="" action="process.php" method="POST" class="mt-4"></br>
 
-        <!-- Microbiologia -->
-        <div class="mb-4">
-          <label class="form-label text-primary fw-semibold">Microbiologia</label>
-          <div class="form-check"><input class="form-check-input" type="radio" name="microbiologia" id="urocultura" checked><label class="form-check-label" for="urocultura" style="color: #0c4299;">Urocultura com antibiograma</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="microbiologia" id="swab"><label class="form-check-label" for="swab" style="color: #0c4299;">Swab ocular</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="microbiologia" id="escarro"><label class="form-check-label" for="escarro" style="color: #0c4299;">Escarro para exame de Micobacterium tuberculosis</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="microbiologia" id="naoMicro"><label class="form-check-label" for="naoMicro" style="color: #0c4299;">Não foi solicitado</label></div>
+                    <p><strong>Microbiologia</strong></p>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioMicro" id="radio1" value="Urocultura" required>
+                        <label for="radio1">Urocultura com antibiograma</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioMicro" id="radio2" value="SwabOcular" required>
+                        <label for="radio2">Swab ocular</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioMicro" id="radio3" value="EscarroPaTubercu" required>
+                        <label for="radio1">Escarro para exame de Micobacterium tuberculosis</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input mb-3" type="radio" name="RadioMicro" id="radio4" value="NaoSolicitado" required>
+                        <label for="radio2">Não foi solicitado</label>
+                    </div></br>
+
+                    <p><strong>Parasitologia</strong></p>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioParasi" id="radio01" value="ParasitoFazes" required>
+                        <label for="radio01">Exame parasitológico de fezes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioParasi" id="radio02" value="SangueOculto" required>
+                        <label for="radio02">Sangue oculto</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioParasi" id="radio03" value="NaoSolicitado" required>
+                        <label for="radio03">Não solicitado</label>
+                    </div></br>
+
+                    <p><strong>Hematologia</strong></p>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioHemato" id="radio001" value="HemogratoCompleto" required>
+                        <label for="radio001">Hemograma completo</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioHemato" id="radio002" value="NaoSolicitado" required>
+                        <label for="radio002">Não solicitado</label>
+                    </div></br>
+
+                    <p><strong>Urinálise</strong></p>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioUrina" id="radio0001" value="Urina" required>
+                        <label for="radio000">Urina 1</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioUrina" id="radio0002" value="NaoSolicitado" required>
+                        <label for="radio0002">Não Solicitado</label>
+                    </div></br>
+
+                    <p><strong>Bioquímica</strong></p>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioBioquimica" id="bio1" value="AcidoUrico" required>
+                        <label for="bio1">Ácido úrico</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioBioquimica" id="bio2" value="AlfaAmilase" required>
+                        <label for="bio2">Alfa amilase</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioBioquimica" id="bio3" value="BilirrubinaTotal" required>
+                        <label for="bio3">Bilirrubina Total</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioBioquimica" id="bio4" value="BilirrubinaDireta" required>
+                        <label for="bio4">Bilirrubina Direta</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioBioquimica" id="bio5" value="Calcio" required>
+                        <label for="bio5">Cálcio</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioBioquimica" id="bio6" value="Colesterol" required>
+                        <label for="bio6">Colesterol</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioBioquimica" id="bio7" value="HDL" required>
+                        <label for="bio7">HDL</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioBioquimica" id="bio8" value="Creatinina" required>
+                        <label for="bio8">Creatinina</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioBioquimica" id="bio9" value="FerroFerene" required>
+                        <label for="bio9">Ferro Ferene</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioBioquimica" id="bio10" value="FosfataseAlcalina" required>
+                        <label for="bio10">Fosfatase Alcalina</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioBioquimica" id="bio11" value="Fosfato" required>
+                        <label for="bio11">Fosfato</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioBioquimica" id="bio12" value="GamaGT" required>
+                        <label for="bio12">Gama GT</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioBioquimica" id="bio13" value="Glicose" required>
+                        <label for="bio13">Glicose</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioBioquimica" id="bio14" value="GOT_AST" required>
+                        <label for="bio14">GOT (AST)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioBioquimica" id="bio15" value="GTP_ALT" required>
+                        <label for="bio15">GTP (ALT)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioBioquimica" id="bio16" value="Magnesio" required>
+                        <label for="bio16">Magnésio</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioBioquimica" id="bio17" value="ProteinaTotal" required>
+                        <label for="bio17">Proteína total</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioBioquimica" id="bio18" value="Triglicerideos" required>
+                        <label for="bio18">Triglicerídeos</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input mb-3" type="radio" name="RadioBioquimica" id="bio19" value="Ureia" required>
+                        <label for="bio19">Uréia</label>
+                    </div></br>
+
+                    <p><strong>Foi realizado o jejum de 8 horas?</strong></p>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioJejum" id="jejum1" value="Sim" required>
+                        <label for="jejum1">Sim</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="RadioJejum" id="jejum2" value="Nao" required>
+                        <label for="jejum2">Não</label>
+                    </div></br>
+
+                    <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+
+
+                </form>
+            </div>
         </div>
+        </>
 
-        <!-- Parasitologia -->
-        <div class="mb-4">
-          <label class="form-label text-primary fw-semibold">Parasitologia</label>
-          <div class="form-check"><input class="form-check-input" type="radio" name="parasitologia" id="fezes"><label class="form-check-label" for="fezes" style="color: #0c4299;">Exame parasitológico de fezes</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="parasitologia" id="sangueOculto"><label class="form-check-label" for="sangueOculto" style="color: #0c4299;">Sangue oculto</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="parasitologia" id="naoParasito" checked><label class="form-check-label" for="naoParasito" style="color: #0c4299;">Não foi solicitado</label></div>
-        </div>
 
-        <!-- Hematologia -->
-        <div class="mb-4">
-          <label class="form-label text-primary fw-semibold">Hematologia</label>
-          <div class="form-check"><input class="form-check-input" type="radio" name="hematologia" id="hemograma"><label class="form-check-label" for="hemograma" style="color: #0c4299;">Hemograma completo</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="hematologia" id="naoHema"><label class="form-check-label" for="naoHema" style="color: #0c4299;">Não foi solicitado</label></div>
-        </div>
-
-        <!-- Urinálise -->
-        <div class="mb-4">
-          <label class="form-label text-primary fw-semibold">Urinálise</label>
-          <div class="form-check"><input class="form-check-input" type="radio" name="urinalise" id="urina1"><label class="form-check-label" for="urina1" style="color: #0c4299;">Urina I</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="urinalise" id="naoUrina"><label class="form-check-label" for="naoUrina" style="color: #0c4299;">Não foi solicitado</label></div>
-          <div class="input-group mt-2">
-            <div class="input-group-text">
-              <input class="form-check-input mt-0" type="radio" name="urinalise" id="outraUrina">
-            </div>
-            <input type="text" class="form-control" placeholder="Outra">
-          </div>
-        </div>
-
-        <!-- Bioquímica -->
-        <div class="mb-4">
-          <label class="form-label text-primary fw-semibold">Bioquímica</label>
-          <div class="row">
-            <div class="col-md-4">
-              <div class="form-check"><input class="form-check-input" type="checkbox" id="acido"><label class="form-check-label" for="acido" style="color: #0c4299;">Ácido úrico</label></div>
-              <div class="form-check"><input class="form-check-input" type="checkbox" id="amilase"><label class="form-check-label" for="amilase" style="color: #0c4299;">Alfa amilase</label></div>
-              <div class="form-check"><input class="form-check-input" type="checkbox" id="bilitotal"><label class="form-check-label" for="bilitotal" style="color: #0c4299;">Bilirrubina Total</label></div>
-              <div class="form-check"><input class="form-check-input" type="checkbox" id="bilidireta"><label class="form-check-label" for="bilidireta" style="color: #0c4299;">Bilirrubina Direta</label></div>
-              <div class="form-check"><input class="form-check-input" type="checkbox" id="calcio"><label class="form-check-label" for="calcio" style="color: #0c4299;">Cálcio</label></div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-check"><input class="form-check-input" type="checkbox" id="colesterol"><label class="form-check-label" for="colesterol" style="color: #0c4299;">Colesterol</label></div>
-              <div class="form-check"><input class="form-check-input" type="checkbox" id="hdl"><label class="form-check-label" for="hdl" style="color: #0c4299;">HDL</label></div>
-              <div class="form-check"><input class="form-check-input" type="checkbox" id="creatinina"><label class="form-check-label" for="creatinina" style="color: #0c4299;">Creatinina</label></div>
-              <div class="form-check"><input class="form-check-input" type="checkbox" id="ferro"><label class="form-check-label" for="ferro" style="color: #0c4299;">Ferro Ferene</label></div>
-              <div class="form-check"><input class="form-check-input" type="checkbox" id="fosfatase"><label class="form-check-label" for="fosfatase" style="color: #0c4299;">Fosfatase Alcalina</label></div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-check"><input class="form-check-input" type="checkbox" id="fosfato"><label class="form-check-label" for="fosfato" style="color: #0c4299;">Fosfato</label></div>
-              <div class="form-check"><input class="form-check-input" type="checkbox" id="gama"><label class="form-check-label" for="gama" style="color: #0c4299;">Gama GT</label></div>
-              <div class="form-check"><input class="form-check-input" type="checkbox" id="glicose"><label class="form-check-label" for="glicose" style="color: #0c4299;">Glicose</label></div>
-              <div class="form-check"><input class="form-check-input" type="checkbox" id="got"><label class="form-check-label" for="got" style="color: #0c4299;">GOT (AST)</label></div>
-              <div class="form-check"><input class="form-check-input" type="checkbox" id="gtp"><label class="form-check-label" for="gtp" style="color: #0c4299;">GTP (ALT)</label></div>
-              <div class="form-check"><input class="form-check-input" type="checkbox" id="magnesio"><label class="form-check-label" for="magnesio" style="color: #0c4299;">Magnésio</label></div>
-              <div class="form-check"><input class="form-check-input" type="checkbox" id="proteina"><label class="form-check-label" for="proteina" style="color: #0c4299;">Proteína total</label></div>
-              <div class="form-check"><input class="form-check-input" type="checkbox" id="triglicerideos"><label class="form-check-label" for="triglicerideos" style="color: #0c4299;">Triglicerídeos</label></div>
-              <div class="form-check"><input class="form-check-input" type="checkbox" id="ureia"><label class="form-check-label" for="ureia" style="color: #0c4299;">Uréia</label></div>
-            </div>
-          </div>
-
-          <!-- Nova linha: Outra e Não solicitado -->
-          <div class="row mt-3">
-            <div class="col-md-6">
-              <div class="input-group">
-                <div class="input-group-text">
-                  <input class="form-check-input mt-0" type="checkbox" id="bioquimicaOutraCheck">
-                </div>
-                <input type="text" class="form-control" placeholder="Outra (especifique)" id="bioquimicaOutraTexto">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-check mt-2 mt-md-0">
-                <input class="form-check-input" type="checkbox" id="naoSolicitadoBioquimica">
-                <label class="form-check-label" for="naoSolicitadoBioquimica" style="color: #0c4299;">Não foi solicitado</label>
-              </div>
-            </div>
-          </div>
-
-          <!-- Jejum -->
-          <div class="mt-4">
-            <label class="form-label text-primary fw-semibold">Foi realizado jejum de 8 horas?</label>
-            <div class="form-check"><input class="form-check-input" type="radio" name="jejum" id="jejumSim"><label class="form-check-label" for="jejumSim" style="color: #0c4299;">Sim</label></div>
-            <div class="form-check"><input class="form-check-input" type="radio" name="jejum" id="jejumNao"><label class="form-check-label" for="jejumNao" style="color: #0c4299;">Não</label></div>
-          </div>
-        </div>
-
-        <button class="btn w-100" style="background-color: #0c4299; color: white;">Enviar</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
