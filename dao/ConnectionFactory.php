@@ -1,9 +1,9 @@
 <?php
 class ConnectionFactory {
-    private static $connection; // Corrigido para private e static
+    static $connection; 
 
     public static function getConnection() {
-        if (!isset(ConnectionFactory::$connection)) { // Usando o nome da classe para acessar a variável estática
+        if (!isset(ConnectionFactory::$connection)) { 
             $port = 3307; // Porta do SGBD
             $dbName = "aula0605"; // Nome do banco de dados
             $userDb = "root"; // Usuário do banco
@@ -17,6 +17,6 @@ class ConnectionFactory {
                 echo "Erro!! " . $ex->getMessage();
             }
         }
-        return ConnectionFactory::$connection; // Retorna a conexão estática
+        return $this->connection; 
     }
 }
