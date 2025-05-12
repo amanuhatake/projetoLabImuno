@@ -1,4 +1,5 @@
 <?php
+//Herança de pessoa
  class Paciente extends Pessoa{
     private $registro;
     private $data;
