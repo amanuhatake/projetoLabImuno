@@ -142,7 +142,7 @@
 
         <div class="row g-4 justify-content-center">
             <div class="col-lg-5 col-md-6">
-                <a href="COLOCA O LINK AQUI DANIII" style="text-decoration: none; color: inherit;">
+                <a href="COLOCA O LINK AQUI CAIO" style="text-decoration: none; color: inherit;">
                     <div class="card-option text-center p-5" tabindex="0">
                         <i class="bi bi-gear-fill"></i>
                         <div class="card-title">ADM</div>
@@ -151,7 +151,7 @@
             </div>
 
             <div class="col-lg-5 col-md-6">
-                <a href="COLOCA O LINK AQUI DANIII" style="text-decoration: none; color: inherit;">
+                <a href="cadastroPaciente.php" style="text-decoration: none; color: inherit;">
                     <div class="card-option text-center p-5" tabindex="0">
                         <i class="bi bi-person-fill"></i>
                         <div class="card-title">Paciente</div>
@@ -160,7 +160,7 @@
             </div>
 
             <div class="col-lg-5 col-md-6">
-                <a href="COLOCA O LINK AQUI DANIII" style="text-decoration: none; color: inherit;">
+                <a href="COLOCA O LINK AQUI FABIO" style="text-decoration: none; color: inherit;">
                     <div class="card-option text-center p-5" tabindex="0">
                         <i class="bi bi-journal-text"></i>
                         <div class="card-title">Laudo</div>
@@ -169,7 +169,7 @@
             </div>
 
             <div class="col-lg-5 col-md-6">
-                <a href="COLOCA O LINK AQUI DANIII" style="text-decoration: none; color: inherit;">
+                <a href="LabImuno.html" style="text-decoration: none; color: inherit;">
                     <div class="card-option text-center p-5" tabindex="0">
                         <i class="bi bi-file-medical-fill"></i>
                         <div class="card-title">Exames Laboratoriais</div>
