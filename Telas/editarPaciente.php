@@ -1,4 +1,17 @@
-<form action="requisicoes.php" method="post">
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Pacientes - LEAC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <form action="requisicoes.php" method="post">
             <h1 class="text-center">Cadastro de Pacientes - LEAC</h1>
 
             <div class="card p-4 mt-3">
@@ -44,9 +57,9 @@
                 <!-- Medicamento Contínuo -->
                 <div class="mb-3">
                     <label class="form-label">Toma algum medicamento contínuo? Qual?</label><br>
-                    <input type="radio" value="Sim" id="medicamentoSim" name="medicamento" required>
+                    <input type="radio" value="Sim" id="medicamentoSim" name="medicamento" required onclick="document.getElementById('medicamentoNome').style.display='block'">
                     <label for="medicamentoSim">Sim</label><br>
-                    <input type="radio" value="Não" id="medicamentoNao" name="medicamento" required>
+                    <input type="radio" value="Não" id="medicamentoNao" name="medicamento" required onclick="document.getElementById('medicamentoNome').style.display='none'">
                     <label for="medicamentoNao">Não</label><br>
                     <input type="text" name="medicamentoNome" id="medicamentoNome" class="form-control mt-2" placeholder="Qual medicamento?" style="display:none;">
                 </div>
@@ -76,3 +89,9 @@
                 <button type="submit" class="btn btn-primary mt-3">Enviar</button>
             </div>
         </form>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-tN6uHH3YcscnGMRAxXB2PvWSV0bwGHw8/jyKMRgT04ANL3ldfgmvvLZy5Hhcvvo0" crossorigin="anonymous"></script>
+</body>
+</html>
