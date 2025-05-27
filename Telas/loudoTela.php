@@ -103,7 +103,8 @@ $CRF = 38691;
       <p><strong>CRF:</strong> <?= $CRF ?></p>
       <div class="d-flex justify-content-between mt-4">
         <button class="btn btn-danger">Editar</button>
-        <button class="btn btn-success">PDF</button>
+        <a href="geradorpdf.php" target="_blank" class="btn btn-success">PDF</a>
+
       </div>
     </div>
   </div>
