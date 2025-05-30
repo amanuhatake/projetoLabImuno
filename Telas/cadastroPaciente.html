@@ -1,128 +1,176 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Cadastro de Pacientes - LEAC</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<?php
+function gerarCodigoAscii($length = 6) {
+    $codigo = '';
+    for ($i = 0; $i < $length; $i++) {
+        $tipo = rand(0, 1);
+        if ($tipo === 0) {
+            $codigo .= chr(rand(48, 57));
+        } else {
+            $codigo .= chr(rand(65, 90));
+        }
+    }
+    return $codigo;
+}
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+$idPaciente = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nome = $_POST['nome'] ?? '';
+    $ano = date('y');
+    $idPaciente = $ano . gerarCodigoAscii(6);
+}
+?>
+
+<!DOCTYPE html>
+<htm lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <title>Cadastro de Pacientes - LEAC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 </head>
 <body class="bg-light">
 
-    <div class="container mt-5">
-        <form action="requisicoes.php" method="post">
-            <h1 class="text-center">Cadastro de Pacientes - LEAC</h1>
+<div class="container mt-5">
 
-            <div class="card p-4 mt-3">
-                <!-- Nome Completo -->
-                <div class="mb-3">
-                    <label for="nome" class="form-label">Nome completo:</label>
-                    <input type="text" id="nome" name="nome" class="form-control" placeholder="Digite seu nome..." required>
-                </div>
+    <?php if ($idPaciente): ?>
+        <div class="alert alert-primary text-center">
+            <h4>ID do Paciente cadastrado: <strong><?php echo htmlspecialchars($idPaciente); ?></strong></h4>
+        </div>
+    <?php endif; ?>
 
-                <!-- Período -->
-                <div class="mb-3">
-                    <label class="form-label">Período:</label><br>
-                    <input type="radio" value="Matutino" id="ex7" name="periodo" required>
-                    <label for="ex7">Matutino</label><br>
-                    <input type="radio" value="Noturno" id="ex8" name="periodo" required>
-                    <label for="ex8">Noturno</label>
-                </div>
+    <form action="" method="post">
+        <h1 class="text-center">Cadastro de Pacientes - LEAC</h1>
 
-                <!-- Data de Nascimento -->
-                <div class="mb-3">
-                    <label for="datanascimento" class="form-label">Data de Nascimento:</label>
-                    <input type="date" id="datanascimento" name="datanascimento" class="form-control" required>
-                </div>
-
-                <!-- Telefone -->
-                <div class="mb-3">
-                    <label for="telefone" class="form-label">Telefone para contato:</label>
-                    <input type="tel" name="telefone" id="telefone" class="form-control" placeholder="(DDD) 99999-9999" required>
-                </div>
-
-                <!-- Email -->
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email para contato:</label>
-                    <input type="email" name="email" id="email" class="form-control" placeholder="Digite o email" required>
-                </div>
-
-                <!-- Nome da Mãe -->
-                <div class="mb-3">
-                    <label for="mae" class="form-label">Nome da mãe:</label>
-                    <input type="text" name="mae" id="mae" class="form-control" placeholder="Digite o nome da mãe" required>
-                </div>
-
-                <!-- Medicamento Contínuo -->
-                <div class="mb-3">
-                    <label class="form-label">Toma algum medicamento contínuo? Qual?</label><br>
-                    <input type="radio" value="Sim" id="medicamentoSim" name="medicamento" required onclick="document.getElementById('medicamentoNome').style.display='block'">
-                    <label for="medicamentoSim">Sim</label><br>
-                    <input type="radio" value="Não" id="medicamentoNao" name="medicamento" required onclick="document.getElementById('medicamentoNome').style.display='none'">
-                    <label for="medicamentoNao">Não</label><br>
-                    <input type="text" name="medicamentoNome" id="medicamentoNome" class="form-control mt-2" placeholder="Qual medicamento?" style="display:none;">
-                </div>
-
-                <!-- Patologia -->
-                <div class="mb-3">
-                    <label for="patologia" class="form-label">Tem alguma patologia que trata?</label>
-                    <input type="text" name="patologia" id="patologia" class="form-control" placeholder="Se sim, qual?" required>
-                </div>
-
-                <!-- Exames Solicitados -->
-                <div class="mb-3">
-                    <label class="form-label">Exames solicitados:</label><br>
-                    <input type="checkbox" value="Microbiologia" id="ex1" name="exame[]">
-                    <label for="ex1">Microbiologia</label><br>
-                    <input type="checkbox" value="Parasitologia" id="ex2" name="exame[]">
-                    <label for="ex2">Parasitologia</label><br>
-                    <input type="checkbox" value="Hematologia" id="ex3" name="exame[]">
-                    <label for="ex3">Hematologia</label><br>
-                    <input type="checkbox" value="Bioquímica" id="ex4" name="exame[]">
-                    <label for="ex4">Bioquímica</label><br>
-                    <input type="checkbox" value="Urinálise" id="ex5" name="exame[]">
-                    <label for="ex5">Urinálise</label><br>
-                </div>
-
-                <!-- Botão de Enviar -->
-                <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+        <div class="card p-4 mt-3">
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome completo:</label>
+                <input type="text" id="nome" name="nome" class="form-control" placeholder="Digite seu nome..." required
+                    value="<?php echo isset($nome) ? htmlspecialchars($nome) : ''; ?>">
             </div>
-        </form>
-    </div>
 
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-tN6uHH3YcscnGMRAxXB2PvWSV0bwGHw8/jyKMRgT04ANL3ldfgmvvLZy5Hhcvvo0" crossorigin="anonymous"></script>
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
+            <div class="mb-3">
+                <label class="form-label">Período:</label><br />
+                <input type="radio" value="Matutino" id="ex7" name="periodo" required <?php if (isset($_POST['periodo']) && $_POST['periodo'] === 'Matutino') echo 'checked'; ?>>
+                <label for="ex7">Matutino</label><br />
+                <input type="radio" value="Noturno" id="ex8" name="periodo" required <?php if (isset($_POST['periodo']) && $_POST['periodo'] === 'Noturno') echo 'checked'; ?>>
+                <label for="ex8">Noturno</label>
+            </div>
 
-        h1 {
-            color: #0c4299;
-            font-weight: bold;
-        }
+            <div class="mb-3">
+                <label for="datanascimento" class="form-label">Data de Nascimento:</label>
+                <input type="date" id="datanascimento" name="datanascimento" class="form-control" required
+                    value="<?php echo $_POST['datanascimento'] ?? ''; ?>">
+            </div>
 
-        .card {
-            background-color: white;
-            border: 2px solid #0c4299;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
+            <div class="mb-3">
+                <label for="telefone" class="form-label">Telefone para contato:</label>
+                <input type="tel" name="telefone" id="telefone" class="form-control" placeholder="(DDD) 99999-9999" required
+                    value="<?php echo $_POST['telefone'] ?? ''; ?>">
+            </div>
 
-        label {
-            font-weight: 500;
-        }
+            <div class="mb-3">
+                <label for="email" class="form-label">Email para contato:</label>
+                <input type="email" name="email" id="email" class="form-control" placeholder="Digite o email" required
+                    value="<?php echo $_POST['email'] ?? ''; ?>">
+            </div>
 
-        button.btn-primary {
-            background-color: #0c4299;
-            border-color: #0c4299;
-        }
+            <div class="mb-3">
+                <label for="mae" class="form-label">Nome da mãe:</label>
+                <input type="text" name="mae" id="mae" class="form-control" placeholder="Digite o nome da mãe" required
+                    value="<?php echo $_POST['mae'] ?? ''; ?>">
+            </div>
 
-        button.btn-primary:hover {
-            background-color: #092f6b;
-            border-color: #092f6b;
+            <div class="mb-3">
+                <label class="form-label">Toma algum medicamento contínuo? Qual?</label><br />
+                <input type="radio" value="Sim" id="medicamentoSim" name="medicamento" required
+                    onclick="document.getElementById('medicamentoNome').style.display='block'"
+                    <?php if (isset($_POST['medicamento']) && $_POST['medicamento'] === 'Sim') echo 'checked'; ?>>
+                <label for="medicamentoSim">Sim</label><br />
+                <input type="radio" value="Não" id="medicamentoNao" name="medicamento" required
+                    onclick="document.getElementById('medicamentoNome').style.display='none'"
+                    <?php if (isset($_POST['medicamento']) && $_POST['medicamento'] === 'Não') echo 'checked'; ?>>
+                <label for="medicamentoNao">Não</label><br />
+                <input type="text" name="medicamentoNome" id="medicamentoNome" class="form-control mt-2" placeholder="Qual medicamento?" style="display:none;"
+                    value="<?php echo $_POST['medicamentoNome'] ?? ''; ?>">
+            </div>
+
+            <div class="mb-3">
+                <label for="patologia" class="form-label">Tem alguma patologia que trata?</label>
+                <input type="text" name="patologia" id="patologia" class="form-control" placeholder="Se sim, qual?" required
+                    value="<?php echo $_POST['patologia'] ?? ''; ?>">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Exames solicitados:</label><br />
+                <?php
+                $exames = ['Microbiologia', 'Parasitologia', 'Hematologia', 'Bioquímica', 'Urinálise'];
+                foreach ($exames as $exame) {
+                    $checked = (isset($_POST['exame']) && in_array($exame, $_POST['exame'])) ? 'checked' : '';
+                    echo "<input type='checkbox' value='$exame' id='ex_$exame' name='exame[]' $checked>";
+                    echo "<label for='ex_$exame'>$exame</label><br />";
+                }
+                ?>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const medSim = document.getElementById('medicamentoSim');
+        const medNao = document.getElementById('medicamentoNao');
+        const medNome = document.getElementById('medicamentoNome');
+        
+        function toggleMedicamentoNome() {
+            if (medSim.checked) {
+                medNome.style.display = 'block';
+            } else {
+                medNome.style.display = 'none';
+            }
         }
-    </style>
+        toggleMedicamentoNome();
+        
+        medSim.addEventListener('change', toggleMedicamentoNome);
+        medNao.addEventListener('change', toggleMedicamentoNome);
+    });
+</script>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    h1 {
+        color: #0c4299;
+        font-weight: bold;
+    }
+
+    .card {
+        background-color: white;
+        border: 2px solid #0c4299;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    label {
+        font-weight: 500;
+    }
+
+    button.btn-primary {
+        background-color: #0c4299;
+        border-color: #0c4299;
+    }
+
+    button.btn-primary:hover {
+        background-color: #092f6b;
+        border-color: #092f6b;
+    }
+</style>
+
 </body>
-</html>
+</htm
