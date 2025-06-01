@@ -1,5 +1,5 @@
 <?php
-class DadosImuno{
+class DadosImuno extends paciente{
     private $nome;
     private $registro;
     private $lote;
