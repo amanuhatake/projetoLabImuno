@@ -128,10 +128,10 @@
     <!-- Sidebar -->
     <div class="sidebar" role="navigation" aria-label="Menu principal">
         <a href="#" tabindex="0"><i class="bi bi-gear-fill"></i> ADM</a>
-        <a href="#" tabindex="0"><i class="bi bi-person-fill"></i> Paciente</a>
-        <a href="#" tabindex="0"><i class="bi bi-journal-text"></i> Laudo</a>
-        <a href="#" tabindex="0"><i class="bi bi-file-medical-fill"></i> Exames Laboratoriais</a>
-        <a href="#" tabindex="0"><i class="bi bi-file-earmark-medical-fill"></i> Exames Solicitados</a>
+        <a href="listarPaciente.php" tabindex="0"><i class="bi bi-person-fill"></i> Paciente</a>
+        <a href="loudoTela.php" tabindex="0"><i class="bi bi-journal-text"></i> Laudo</a>
+        <a href="LabImuno.html" tabindex="0"><i class="bi bi-file-medical-fill"></i> Exames Laboratoriais</a>
+        <a href="pagSelecao.php" tabindex="0"><i class="bi bi-file-earmark-medical-fill"></i> Exames Solicitados</a>
         <a href="#" tabindex="0"><i class="bi bi-question-circle"></i> Ajuda</a>
         <a href="#" tabindex="0"><i class="bi bi-box-arrow-right"></i> Sair</a>
     </div>
@@ -160,7 +160,7 @@
             </div>
 
             <div class="col-lg-5 col-md-6">
-                <a href="COLOCA O LINK AQUI FABIO" style="text-decoration: none; color: inherit;">
+                <a href="loudoTela.php" style="text-decoration: none; color: inherit;">
                     <div class="card-option text-center p-5" tabindex="0">
                         <i class="bi bi-journal-text"></i>
                         <div class="card-title">Laudo</div>

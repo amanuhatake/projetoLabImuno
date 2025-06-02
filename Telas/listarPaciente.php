@@ -32,7 +32,24 @@
         </thead>
         <tbody>
             <tr>
-                <td colspan="5" class="text-center">Nenhum paciente cadastrado.</td>
+                <td>1</td>
+                <td>João da Silva</td>
+                <td>(11) 91234-5678</td>
+                <td>joao@email.com</td>
+                <td>
+                    <a href="editarPaciente.php?id=1" class="btn btn-sm btn-primary">Editar</a>
+                    <a href="excluirPaciente.php?id=1" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Maria Oliveira</td>
+                <td>(21) 97654-3210</td>
+                <td>maria@email.com</td>
+                <td>
+                    <a href="editarPaciente.php?id=2" class="btn btn-sm btn-primary">Editar</a>
+                    <a href="excluirPaciente.php?id=2" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
+                </td>
             </tr>
         </tbody>
     </table>
