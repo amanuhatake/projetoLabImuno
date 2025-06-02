@@ -1,0 +1,56 @@
+<?php
+
+require_once 'Pessoa.php';
+require_once 'Conexao.php';
+
+class PessoaDao {
+
+    public function inserir(Pessoa $pessoa) {
+        try {
+            $sql = "INSERT INTO pessoa (nome_completo, data_nascimento, telefone, email) 
+                    VALUES (:nome, :data, :telefone, :email)";
+            
+            $con_sql = Conexao::getConnection()->prepare($sql);
+            $con_sql->bindValue(":nome", $pessoa->getNomeCompleto());
+            $con_sql->bindValue(":data", $pessoa->getDataNascimento());
+            $con_sql->bindValue(":telefone", $pessoa->getTelefone());
+            $con_sql->bindValue(":email", $pessoa->getEmail());
+
+            return $con_sql->execute();
+        } catch (PDOException $ex) {
+            echo "<p>Erro ao inserir Pessoa no banco de dados!</p> $ex";
+            return false;
+        }
+    }
+
+    public function read() {
+        try {
+            $sql = "SELECT * FROM pessoa";
+            $con_sql = Conexao::getConnection()->query($sql);
+            $lista = $con_sql->fetchAll(PDO::FETCH_ASSOC);
+            $pessoaList = [];
+
+            foreach ($lista as $linha) {
+                $pessoaList[] = $this->mapearPessoa($linha);
+            }
+
+            echo "Temos " . count($pessoaList) . " pessoas cadastradas";
+            return $pessoaList;
+
+        } catch (PDOException $ex) {
+            echo "<p>Ocorreu um erro ao selecionar pessoas</p> $ex";
+            return [];
+        }
+    }
+
+    private function mapearPessoa($linha) {
+        $pessoa = new Pessoa(
+            $linha['nome_completo'],
+            $linha['data_nascimento'],
+            $linha['telefone'],
+            $linha['email']
+        );
+        return $pessoa;
+    }
+}
+?>

@@ -4,16 +4,16 @@ class PacienteDao{
 
     public function inserir(Paciente $pac){
         try{
-             $sql = "INSERT INTO paciente (registro, data, periodo, examesSolicitados) 
-             VALUES (:registro, :data, :periodo, :nomeMae, :examesSolicitados);"
+             $sql = "INSERT INTO paciente (registro, data, periodo, examesSolicitados)
+             VALUES (:registro, :data, :periodo, :nomeMae, :examesSolicitados);";
              $con_sql = ConnectionPaciente::getConnection()->prepare($sql);
-             $con_sql->bindValue(":Registro", $fab->getregistro());
-             $con_sql->bindValue(":Data", $fab->getdata());
-             $con_sql->bindValue(":Periodo", $fab->getperiodo());
-             $con_sql->bindValue(": nomeMae", $fab->getnomeMae());
+             $con_sql->bindValue(":Registro", $pac->getregistro());
+             $con_sql->bindValue(":Data", $pac->getdata());
+             $con_sql->bindValue(":Periodo", $pac->getperiodo());
+             $con_sql->bindValue(": nomeMae", $pac->getnomeMae());
              return $con_sql->execute();
          } catch(PDOException $ex){
-            echo "<p> Erro ao inserir Fabricante no banco de dados!</p> $ex";
+            echo "<p> Erro ao inserir Paciente no banco de dados!</p> $ex";
         }
     }
      // Executa SELECT * FROM paciente
@@ -26,8 +26,8 @@ class PacienteDao{
             foreach($lista as $linha){
                 $pacList[] = $this->listaPacientes($linha);
             }
-             echo "Temos ". count($pacListList). " pacientes cadastrados";
-            return $fabList;
+             echo "Temos ". count($pacList). " pacientes cadastrados";
+            return $pacList;
         }catch(PDOException $ex){
             echo "<p> Ocorreu um erro ao selecionar pacientes </p> $ex";
         }

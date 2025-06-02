@@ -1,7 +1,7 @@
 <?php
 include '../dao/ConnectionPaciente.php';
 include '../dao/PacienteDao.php';
-include '../model/PAciente.php';
+include '../model/Paciente.php';
 
 $paciente = new Paciente();
 $pacienteDao = new PacienteDao();

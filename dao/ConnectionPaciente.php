@@ -17,7 +17,7 @@ class ConnectionPaciente{
                 echo "Erro!! ".$ex->getMessage();
             }
         }
-        return $connection;
+        return self::$connection;
     }
 }
 
