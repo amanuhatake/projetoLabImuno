@@ -12,17 +12,17 @@ function gerarCodigoAscii($length = 6) {
     return $codigo;
 }
 
-$registroPaciente = '';
+$idPaciente = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = $_POST['nome'] ?? '';
     $ano = date('y');
-    $registroPaciente = $ano . gerarCodigoAscii(6);
+    $idPaciente = $ano . gerarCodigoAscii(6);
 }
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-br">
+<htm lang="pt-br">
 <head>
     <meta charset="UTF-8" />
     <title>Cadastro de Pacientes - LEAC</title>
@@ -33,9 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <div class="container mt-5">
 
-    <?php if ($registroPaciente): ?>
+    <?php if ($idPaciente): ?>
         <div class="alert alert-primary text-center">
-            <h4>Registro do Paciente cadastrado: <strong><?php echo htmlspecialchars($registroPaciente); ?></strong></h4>
+            <h4>ID do Paciente cadastrado: <strong><?php echo htmlspecialchars($idPaciente); ?></strong></h4>
         </div>
     <?php endif; ?>
 
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="card p-4 mt-3">
             <div class="mb-3">
                 <label for="nome" class="form-label">Nome completo:</label>
-                <input type="text" id="nome" name="nome" class="form-control" required
+                <input type="text" id="nome" name="nome" class="form-control" placeholder="Digite seu nome..." required
                     value="<?php echo isset($nome) ? htmlspecialchars($nome) : ''; ?>">
             </div>
 
@@ -65,19 +65,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="mb-3">
                 <label for="telefone" class="form-label">Telefone para contato:</label>
-                <input type="tel" name="telefone" id="telefone" class="form-control" required
+                <input type="tel" name="telefone" id="telefone" class="form-control" placeholder="(DDD) 99999-9999" required
                     value="<?php echo $_POST['telefone'] ?? ''; ?>">
             </div>
 
             <div class="mb-3">
                 <label for="email" class="form-label">Email para contato:</label>
-                <input type="email" name="email" id="email" class="form-control" required
+                <input type="email" name="email" id="email" class="form-control" placeholder="Digite o email" required
                     value="<?php echo $_POST['email'] ?? ''; ?>">
             </div>
 
             <div class="mb-3">
                 <label for="mae" class="form-label">Nome da mãe:</label>
-                <input type="text" name="mae" id="mae" class="form-control" required
+                <input type="text" name="mae" id="mae" class="form-control" placeholder="Digite o nome da mãe" required
                     value="<?php echo $_POST['mae'] ?? ''; ?>">
             </div>
 
@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="mb-3">
                 <label for="patologia" class="form-label">Tem alguma patologia que trata?</label>
-                <input type="text" name="patologia" id="patologia" class="form-control" required
+                <input type="text" name="patologia" id="patologia" class="form-control" placeholder="Se sim, qual?" required
                     value="<?php echo $_POST['patologia'] ?? ''; ?>">
             </div>
 
@@ -116,52 +116,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit" class="btn btn-primary mt-3">Enviar</button>
         </div>
     </form>
-
-    <h2 class="text-center mt-5">Pacientes Cadastrados</h2>
-    <table class="table table-bordered table-striped mt-3">
-        <thead class="table-dark">
-            <tr>
-                <th>Registro</th>
-                <th>Nome</th>
-                <th>Data de Nascimento</th>
-                <th>Telefone</th>
-                <th>Email</th>
-                <th>Período</th>
-                <th>Nome da Mãe</th>
-                <th>Exames</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-                if ($_SERVER["REQUEST_METHOD"] == "GET") {
-                    require 'dao/ConnectionFactory.php';
-                    require 'dao/PacienteDao.php';
-                    require 'model/Paciente.php';
-
-                    $pacienteDao = new PacienteDao();
-                    $lista = $pacienteDao->read();
-
-                    foreach ($lista as $paciente) {
-                        echo "<tr>";
-                        echo "<td>{$paciente->getRegistro()}</td>";
-                        echo "<td>{$paciente->getNomeCompleto()}</td>";
-                        echo "<td>{$paciente->getDataNascimento()}</td>";
-                        echo "<td>{$paciente->getTelefone()}</td>";
-                        echo "<td>{$paciente->getEmail()}</td>";
-                        echo "<td>{$paciente->getPeriodo()}</td>";
-                        echo "<td>{$paciente->getNomeMae()}</td>";
-                        echo "<td>{$paciente->getExamesSolicitados()}</td>";
-                        echo "<td><a href='#'>Editar</a> <a href='#'>Excluir</a></td>";
-                        echo "</tr>";
-                    }
-                }
-            ?>
-        </tbody>
-    </table>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const medSim = document.getElementById('medicamentoSim');
@@ -169,7 +127,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         const medNome = document.getElementById('medicamentoNome');
         
         function toggleMedicamentoNome() {
-            medNome.style.display = medSim.checked ? 'block' : 'none';
+            if (medSim.checked) {
+                medNome.style.display = 'block';
+            } else {
+                medNome.style.display = 'none';
+            }
         }
         toggleMedicamentoNome();
         
@@ -177,5 +139,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         medNao.addEventListener('change', toggleMedicamentoNome);
     });
 </script>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    h1 {
+        color: #0c4299;
+        font-weight: bold;
+    }
+
+    .card {
+        background-color: white;
+        border: 2px solid #0c4299;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    label {
+        font-weight: 500;
+    }
+
+    button.btn-primary {
+        background-color: #0c4299;
+        border-color: #0c4299;
+    }
+
+    button.btn-primary:hover {
+        background-color: #092f6b;
+        border-color: #092f6b;
+    }
+</style>
+
 </body>
-</html>
+</htm

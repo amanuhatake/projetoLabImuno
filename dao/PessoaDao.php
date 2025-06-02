@@ -10,7 +10,7 @@ class PessoaDao {
             $sql = "INSERT INTO pessoa (nome_completo, data_nascimento, telefone, email) 
                     VALUES (:nome, :data, :telefone, :email)";
             
-            $con_sql = Conexao::getConnection()->prepare($sql);
+            $con_sql = ConnectionPessoa::getConnection()->prepare($sql);
             $con_sql->bindValue(":nome", $pessoa->getNomeCompleto());
             $con_sql->bindValue(":data", $pessoa->getDataNascimento());
             $con_sql->bindValue(":telefone", $pessoa->getTelefone());
@@ -26,7 +26,7 @@ class PessoaDao {
     public function read() {
         try {
             $sql = "SELECT * FROM pessoa";
-            $con_sql = Conexao::getConnection()->query($sql);
+            $con_sql = ConnectionPessoa::getConnection()->query($sql);
             $lista = $con_sql->fetchAll(PDO::FETCH_ASSOC);
             $pessoaList = [];
 

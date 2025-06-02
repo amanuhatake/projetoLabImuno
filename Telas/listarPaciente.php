@@ -18,7 +18,7 @@
 <div class="container mt-5">
     <h1 class="mb-4 text-center">Lista de Pacientes</h1>
     <div class="mb-3 text-end">
-        <a href="cadastro.php" class="btn btn-primary">Cadastrar Novo Paciente</a>
+        <a href="cadastroPaciente.php" class="btn btn-primary">Cadastrar Novo Paciente</a>
     </div>
     <table class="table table-striped table-bordered bg-white">
         <thead class="table-primary">
