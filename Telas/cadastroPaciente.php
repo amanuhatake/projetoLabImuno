@@ -12,12 +12,12 @@ function gerarCodigoAscii($length = 6) {
     return $codigo;
 }
 
-$registroPaciente = '';
+$idPaciente = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = $_POST['nome'] ?? '';
     $ano = date('y');
-    $registroPaciente = $ano . gerarCodigoAscii(6);
+    $idPaciente = $ano . gerarCodigoAscii(6);
 }
 ?>
 
@@ -33,9 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <div class="container mt-5">
 
-    <?php if ($registroPaciente): ?>
+    <?php if ($idPaciente): ?>
         <div class="alert alert-primary text-center">
-            <h4>Registro do Paciente cadastrado: <strong><?php echo htmlspecialchars($registroPaciente); ?></strong></h4>
+            <h4>ID do Paciente cadastrado: <strong><?php echo htmlspecialchars($idPaciente); ?></strong></h4>
         </div>
     <?php endif; ?>
 

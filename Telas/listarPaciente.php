@@ -18,7 +18,7 @@
 <div class="container mt-5">
     <h1 class="mb-4 text-center">Lista de Pacientes</h1>
     <div class="mb-3 text-end">
-        <a href="cadastro.php" class="btn btn-primary">Cadastrar Novo Paciente</a>
+        <a href="cadastroPaciente.php" class="btn btn-primary">Cadastrar Novo Paciente</a>
     </div>
     <table class="table table-striped table-bordered bg-white">
         <thead class="table-primary">
@@ -32,7 +32,24 @@
         </thead>
         <tbody>
             <tr>
-                <td colspan="5" class="text-center">Nenhum paciente cadastrado.</td>
+                <td>1</td>
+                <td>João da Silva</td>
+                <td>(11) 91234-5678</td>
+                <td>joao@email.com</td>
+                <td>
+                    <a href="editarPaciente.php?id=1" class="btn btn-sm btn-primary">Editar</a>
+                    <a href="excluirPaciente.php?id=1" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Maria Oliveira</td>
+                <td>(21) 97654-3210</td>
+                <td>maria@email.com</td>
+                <td>
+                    <a href="editarPaciente.php?id=2" class="btn btn-sm btn-primary">Editar</a>
+                    <a href="excluirPaciente.php?id=2" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
+                </td>
             </tr>
         </tbody>
     </table>
