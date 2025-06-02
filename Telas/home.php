@@ -160,7 +160,7 @@
             </div>
 
             <div class="col-lg-5 col-md-6">
-                <a href="COLOCA O LINK AQUI FABIO" style="text-decoration: none; color: inherit;">
+                <a href="geradorpdf.php" style="text-decoration: none; color: inherit;">
                     <div class="card-option text-center p-5" tabindex="0">
                         <i class="bi bi-journal-text"></i>
                         <div class="card-title">Laudo</div>
