@@ -1,25 +1,4 @@
-<?php
-function gerarCodigoAscii($length = 6) {
-    $codigo = '';
-    for ($i = 0; $i < $length; $i++) {
-        $tipo = rand(0, 1);
-        if ($tipo === 0) {
-            $codigo .= chr(rand(48, 57));
-        } else {
-            $codigo .= chr(rand(65, 90));
-        }
-    }
-    return $codigo;
-}
 
-$idPaciente = '';
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nome = $_POST['nome'] ?? '';
-    $ano = date('y');
-    $idPaciente = $ano . gerarCodigoAscii(6);
-}
-?>
 
 <!DOCTYPE html>
 <htm lang="pt-br">
@@ -33,9 +12,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <div class="container mt-5">
 
-    <?php if ($idPaciente): ?>
+    <?php if ($registro): ?>
+        
         <div class="alert alert-primary text-center">
-            <h4>ID do Paciente cadastrado: <strong><?php echo htmlspecialchars($idPaciente); ?></strong></h4>
+            <h4>Registro do Paciente cadastrado: <strong><?php echo htmlspecialchars($registro); ?></strong></h4>
         </div>
     <?php endif; ?>
 
@@ -111,6 +91,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     echo "<label for='ex_$exame'>$exame</label><br />";
                 }
                 ?>
+ <tbody>
+      <?php          
+ if($_SERVER["REQUEST_METHOD"] == "GET"){
+    require_once 'controller/pacienteController.php';
+    lista();
+ }
+?>
+</tbody>
             </div>
 
             <button type="submit" class="btn btn-primary mt-3">Enviar</button>
