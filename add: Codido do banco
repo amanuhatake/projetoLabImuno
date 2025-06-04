@@ -1,0 +1,54 @@
+/* -- Tabela pessoa
+CREATE TABLE pessoa (
+    id_pessoa INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(200),
+    nome_social VARCHAR(200),
+    nascimento DATE
+);
+
+-- Tabela usuario
+CREATE TABLE usuario (
+    id_usuario INT PRIMARY KEY AUTO_INCREMENT,
+    senha VARCHAR(200),
+    data_login DATE,
+    email VARCHAR(200),
+    permissao BOOLEAN,
+    id_pessoa INT,
+    FOREIGN KEY (id_pessoa) REFERENCES pessoa(id_pessoa)
+);
+
+-- Tabela paciente
+CREATE TABLE paciente (
+    id_paciente INT PRIMARY KEY AUTO_INCREMENT,
+    nome_mae VARCHAR(200),
+    tipo_sanguineo VARCHAR(10)
+);
+
+-- Tabela exames (catálogo de exames)
+CREATE TABLE exames (
+    id_exame INT PRIMARY KEY AUTO_INCREMENT,
+    nome_exame VARCHAR(200)
+);
+
+-- Tabela exames_solicitados (tabela de junção com data)
+CREATE TABLE exames_solicitados (
+    id_exame_solicitado INT PRIMARY KEY AUTO_INCREMENT,
+    id_paciente INT,
+    id_exame INT,
+    id_usuario INT,
+    data_registro DATE,
+    FOREIGN KEY (id_paciente) REFERENCES paciente(id_paciente),
+    FOREIGN KEY (id_exame) REFERENCES exames(id_exame),
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
+);
+
+-- Tabela resultado (ligada à solicitação de exame)
+CREATE TABLE resultado (
+    id_resultado INT PRIMARY KEY AUTO_INCREMENT,
+    id_exame_solicitado INT,
+    metodo VARCHAR(200),
+    material VARCHAR(200),
+    FOREIGN KEY (id_exame_solicitado) REFERENCES exames_solicitados(id_exame_solicitado)
+);
+
+*/
