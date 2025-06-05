@@ -151,7 +151,7 @@
             </div>
 
             <div class="col-lg-5 col-md-6">
-                <a href="listarPaciente.php" style="text-decoration: none; color: inherit;">
+                <a href="cadastroPaciente.php" style="text-decoration: none; color: inherit;">
                     <div class="card-option text-center p-5" tabindex="0">
                         <i class="bi bi-person-fill"></i>
                         <div class="card-title">Paciente</div>

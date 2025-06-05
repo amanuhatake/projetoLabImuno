@@ -1,4 +1,4 @@
-/* -- Tabela pessoa
+
 CREATE TABLE pessoa (
     id_pessoa INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(200),
@@ -51,4 +51,3 @@ CREATE TABLE resultado (
     FOREIGN KEY (id_exame_solicitado) REFERENCES exames_solicitados(id_exame_solicitado)
 );
 
-*/
