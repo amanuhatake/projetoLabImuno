@@ -128,7 +128,8 @@
     <!-- Sidebar -->
     <div class="sidebar" role="navigation" aria-label="Menu principal">
         <a href="#" tabindex="0"><i class="bi bi-gear-fill"></i> ADM</a>
-        <a href="listarPaciente.php" tabindex="0"><i class="bi bi-person-fill"></i> Paciente</a>
+        <a href="cadastroPaciente.php" tabindex="0"><i class="bi bi-person-fill"></i> Paciente</a>
+
         <a href="loudoTela.php" tabindex="0"><i class="bi bi-journal-text"></i> Laudo</a>
         <a href="LabImuno.html" tabindex="0"><i class="bi bi-file-medical-fill"></i> Exames Laboratoriais</a>
         <a href="pagSelecao.php" tabindex="0"><i class="bi bi-file-earmark-medical-fill"></i> Exames Solicitados</a>
@@ -160,11 +161,8 @@
             </div>
 
             <div class="col-lg-5 col-md-6">
-<<<<<<< HEAD
                 <a href="geradorpdf.php" style="text-decoration: none; color: inherit;">
-=======
                 <a href="loudoTela.php" style="text-decoration: none; color: inherit;">
->>>>>>> c922654160e5a89d3a80f4da12c96d13a47b870f
                     <div class="card-option text-center p-5" tabindex="0">
                         <i class="bi bi-journal-text"></i>
                         <div class="card-title">Laudo</div>

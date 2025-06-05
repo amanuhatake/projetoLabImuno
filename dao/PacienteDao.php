@@ -42,4 +42,21 @@ class PacienteDao{
     }
 }
 
+  function buscarPorId($registro){
+        try{
+            $sql = "SELECT * FROM paciente WHERE registro = : registro";
+            $conn = ConnectionPaciente::getConnection()->prepare($sql);
+            $conn->bindValue(":registro", $registro);
+            $conn->execute();
+            $row = $conn->fetch(PDO::FETCH_ASSOC);
+            if($row){
+                return $this->listaPacientes($row);
+            }
+            return null;
+        }catch(PDOException $e){
+            echo "<p>Erro ao buscar Registro: {$registro}</p> <p>{$e->getMessage()}</p>";
+        }
+    }
+
+
 ?>

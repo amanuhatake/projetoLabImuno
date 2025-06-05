@@ -1,7 +1,6 @@
 
-
 <!DOCTYPE html>
-<htm lang="pt-br">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8" />
     <title>Cadastro de Pacientes - LEAC</title>
@@ -12,21 +11,16 @@
 
 <div class="container mt-5">
 
-    <?php if ($registro): ?>
-        
-        <div class="alert alert-primary text-center">
-            <h4>Registro do Paciente cadastrado: <strong><?php echo htmlspecialchars($registro); ?></strong></h4>
-        </div>
-    <?php endif; ?>
 
-    <form action="" method="post">
+    <form action="ControllerPaciente" method="post">
         <h1 class="text-center">Cadastro de Pacientes - LEAC</h1>
 
         <div class="card p-4 mt-3">
             <div class="mb-3">
                 <label for="nome" class="form-label">Nome completo:</label>
                 <input type="text" id="nome" name="nome" class="form-control" placeholder="Digite seu nome..." required
-                    value="<?php echo isset($nome) ? htmlspecialchars($nome) : ''; ?>">
+                     value="<?php isset($paciente) && $paciente->getRegistro() ? $Paciente->getnome(): '' ?>"
+                     >
             </div>
 
             <div class="mb-3">
@@ -40,25 +34,29 @@
             <div class="mb-3">
                 <label for="datanascimento" class="form-label">Data de Nascimento:</label>
                 <input type="date" id="datanascimento" name="datanascimento" class="form-control" required
-                    value="<?php echo $_POST['datanascimento'] ?? ''; ?>">
+                    value="<?php isset($paciente) && $paciente->getdataNascimento() ? $Paciente->getdataNascimento(): '' ?>"
+                     >
             </div>
 
             <div class="mb-3">
                 <label for="telefone" class="form-label">Telefone para contato:</label>
                 <input type="tel" name="telefone" id="telefone" class="form-control" placeholder="(DDD) 99999-9999" required
-                    value="<?php echo $_POST['telefone'] ?? ''; ?>">
+                    value="<?php isset($paciente) && $paciente->getTelefone() ? $Paciente->getTelefone(): '' ?>"
+                     >
             </div>
 
             <div class="mb-3">
                 <label for="email" class="form-label">Email para contato:</label>
                 <input type="email" name="email" id="email" class="form-control" placeholder="Digite o email" required
-                    value="<?php echo $_POST['email'] ?? ''; ?>">
+                   value="<?php isset($paciente) && $paciente->getEmail() ? $Paciente->getEmail(): '' ?>"
+                     >
             </div>
 
             <div class="mb-3">
                 <label for="mae" class="form-label">Nome da mãe:</label>
                 <input type="text" name="mae" id="mae" class="form-control" placeholder="Digite o nome da mãe" required
-                    value="<?php echo $_POST['mae'] ?? ''; ?>">
+                   value="<?php isset($paciente) && $paciente->getnomeMae() ? $Paciente->getnomeMae(): '' ?>"
+                     >
             </div>
 
             <div class="mb-3">
@@ -161,4 +159,4 @@
 </style>
 
 </body>
-</htm
+</html>
