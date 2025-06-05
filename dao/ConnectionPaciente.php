@@ -5,7 +5,7 @@ class ConnectionPaciente{
     public static function getConnection(){
         if(!isset($connection)){
             $port = 3307;         // porta do SGBD
-            $dbName = "LabImun"; // Nome do banco de dados
+            $dbName = "laboratorio"; // Nome do banco de dados
             $userDb = "root";     // usuário do banco
             $host = "localhost";  // local de hospedagem do SGBD
             $pass = "";
