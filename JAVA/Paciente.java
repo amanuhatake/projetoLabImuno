@@ -1,5 +1,5 @@
 
-public class Paciente {
+public class Paciente  extends pessoa implements Cadastro{
 	 private int registro;
 	 private String data;
 	 private String periodo;
@@ -7,15 +7,18 @@ public class Paciente {
 	 private String examesSolicitados;
 	 
 	 public Paciente() {
-		 
+		super();
 	 }
 	 
-	 public Paciente(String data, String periodo, String nomeMae, String examesSolicitadps ) {
-		 this.data = data;
-		 this.periodo = periodo;
-		 this.nomeMae = nomeMae;
-		 this.examesSolicitados = examesSolicitados;
-	 }
+	 public Paciente(int registro, String nomeCompleto, String dataNascimento, String telefone, String email,
+                    String data, String periodo, String nomeMae, String examesSolicitados) {
+        super(nomeCompleto, dataNascimento, telefone, email);
+        this.registro = registro;
+        this.data = data;
+        this.periodo = periodo;
+        this.nomeMae = nomeMae;
+        this.examesSolicitados = examesSolicitados;
+    }
 
 	public int getRegistro() {
 		return registro;
@@ -57,9 +60,24 @@ public class Paciente {
 		this.examesSolicitados = examesSolicitados;
 	}
 
+ @Override
+    public void cadastrar() {
+        System.out.println("Paciente cadastrado.");
+    }
+
+    @Override
+    public void editar() {
+        System.out.println("Paciente editado.");
+    }
+
+    @Override
+    public void exibir() {
+        System.out.println(this.toString());
+    }
+
 	@Override
 	public String toString() {
-		return "Paciente: Registro:" + registro + "Data:" + data + "Periodo:" + periodo + "Nome mãe:" + nomeMae
+		return super.toString() + "Paciente: Registro:" + registro + "Data:" + data + "Periodo:" + periodo + "Nome mãe:" + nomeMae
 				+ "Exames Solicitados:" + examesSolicitados + "\n";
 	}
 	 
