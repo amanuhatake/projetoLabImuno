@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -10,17 +9,14 @@
 <body class="bg-light">
 
 <div class="container mt-5">
-
-
-    <form action="ControllerPaciente" method="post">
+    <form action="ControllerPaciente.php" method="post">
         <h1 class="text-center">Cadastro de Pacientes - LEAC</h1>
 
         <div class="card p-4 mt-3">
             <div class="mb-3">
                 <label for="nome" class="form-label">Nome completo:</label>
                 <input type="text" id="nome" name="nome" class="form-control" placeholder="Digite seu nome..." required
-                     value="<?php isset($paciente) && $paciente->getRegistro() ? $Paciente->getnome(): '' ?>"
-                     >
+                    value="<?php echo isset($paciente) && $paciente->getRegistro() ? $paciente->getnome() : ''; ?>">
             </div>
 
             <div class="mb-3">
@@ -34,42 +30,34 @@
             <div class="mb-3">
                 <label for="datanascimento" class="form-label">Data de Nascimento:</label>
                 <input type="date" id="datanascimento" name="datanascimento" class="form-control" required
-                    value="<?php isset($paciente) && $paciente->getdataNascimento() ? $Paciente->getdataNascimento(): '' ?>"
-                     >
+                    value="<?php echo isset($paciente) && $paciente->getdataNascimento() ? $paciente->getdataNascimento() : ''; ?>">
             </div>
 
             <div class="mb-3">
                 <label for="telefone" class="form-label">Telefone para contato:</label>
                 <input type="tel" name="telefone" id="telefone" class="form-control" placeholder="(DDD) 99999-9999" required
-                    value="<?php isset($paciente) && $paciente->getTelefone() ? $Paciente->getTelefone(): '' ?>"
-                     >
+                    value="<?php echo isset($paciente) && $paciente->getTelefone() ? $paciente->getTelefone() : ''; ?>">
             </div>
 
             <div class="mb-3">
                 <label for="email" class="form-label">Email para contato:</label>
                 <input type="email" name="email" id="email" class="form-control" placeholder="Digite o email" required
-                   value="<?php isset($paciente) && $paciente->getEmail() ? $Paciente->getEmail(): '' ?>"
-                     >
+                    value="<?php echo isset($paciente) && $paciente->getEmail() ? $paciente->getEmail() : ''; ?>">
             </div>
 
             <div class="mb-3">
                 <label for="mae" class="form-label">Nome da mãe:</label>
                 <input type="text" name="mae" id="mae" class="form-control" placeholder="Digite o nome da mãe" required
-                   value="<?php isset($paciente) && $paciente->getnomeMae() ? $Paciente->getnomeMae(): '' ?>"
-                     >
+                    value="<?php echo isset($paciente) && $paciente->getnomeMae() ? $paciente->getnomeMae() : ''; ?>">
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Toma algum medicamento contínuo? Qual?</label><br />
-                <input type="radio" value="Sim" id="medicamentoSim" name="medicamento" required
-                    onclick="document.getElementById('medicamentoNome').style.display='block'"
-                    <?php if (isset($_POST['medicamento']) && $_POST['medicamento'] === 'Sim') echo 'checked'; ?>>
+                <input type="radio" value="Sim" id="medicamentoSim" name="medicamento" required <?php if (isset($_POST['medicamento']) && $_POST['medicamento'] === 'Sim') echo 'checked'; ?>>
                 <label for="medicamentoSim">Sim</label><br />
-                <input type="radio" value="Não" id="medicamentoNao" name="medicamento" required
-                    onclick="document.getElementById('medicamentoNome').style.display='none'"
-                    <?php if (isset($_POST['medicamento']) && $_POST['medicamento'] === 'Não') echo 'checked'; ?>>
+                <input type="radio" value="Não" id="medicamentoNao" name="medicamento" required <?php if (isset($_POST['medicamento']) && $_POST['medicamento'] === 'Não') echo 'checked'; ?>>
                 <label for="medicamentoNao">Não</label><br />
-                <input type="text" name="medicamentoNome" id="medicamentoNome" class="form-control mt-2" placeholder="Qual medicamento?" style="display:none;"
+                <input type="text" name="medicamentoNome" id="medicamentoNome" class="form-control mt-2" placeholder="Qual medicamento?"
                     value="<?php echo $_POST['medicamentoNome'] ?? ''; ?>">
             </div>
 
@@ -89,17 +77,18 @@
                     echo "<label for='ex_$exame'>$exame</label><br />";
                 }
                 ?>
- <tbody>
-      <?php          
- if($_SERVER["REQUEST_METHOD"] == "GET"){
-    require_once 'controller/pacienteController.php';
-    lista();
- }
-?>
-</tbody>
             </div>
 
             <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+
+            <div class="mt-4">
+                <?php
+                if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                    require_once '../controller/pacienteController.php';
+                    lista(); 
+                }
+                ?>
+            </div>
         </div>
     </form>
 </div>
@@ -111,16 +100,19 @@
         const medSim = document.getElementById('medicamentoSim');
         const medNao = document.getElementById('medicamentoNao');
         const medNome = document.getElementById('medicamentoNome');
-        
+
         function toggleMedicamentoNome() {
             if (medSim.checked) {
                 medNome.style.display = 'block';
+                medNome.setAttribute('required', 'required');
             } else {
                 medNome.style.display = 'none';
+                medNome.removeAttribute('required');
+                medNome.value = '';
             }
         }
+
         toggleMedicamentoNome();
-        
         medSim.addEventListener('change', toggleMedicamentoNome);
         medNao.addEventListener('change', toggleMedicamentoNome);
     });
