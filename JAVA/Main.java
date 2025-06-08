@@ -31,8 +31,7 @@ public class Main {
                     System.out.println("Saindo das opções");
                     break;
                 default:
-                    System.out.println("Opção inválida
-                    ");
+                    System.out.println("Opção inválida");
             }
 
         } while (opcao != 0);

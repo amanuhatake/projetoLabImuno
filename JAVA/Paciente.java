@@ -62,12 +62,12 @@ public class Paciente  extends pessoa implements Cadastro{
 
  @Override
     public void cadastrar() {
-        System.out.println("Paciente cadastrado.");
+        System.out.println("Paciente cadastrado");
     }
 
     @Override
     public void editar() {
-        System.out.println("Paciente editado.");
+        System.out.println("Paciente editado");
     }
 
     @Override
