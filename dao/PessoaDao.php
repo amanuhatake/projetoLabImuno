@@ -9,20 +9,19 @@ class PessoaDao {
         try {
             $sql = "INSERT INTO pessoa (nome, data_nascimento, telefone, email) 
                     VALUES (:nome_completo, :data_nascimento, :telefone, :email)";
-            
-<<<<<<< HEAD
+
             $con_sql = ConnectionPessoa::getConnection()->prepare($sql);
             $con_sql->bindValue(":nomeo", $pessoa->getNomeCompleto());
             $con_sql->bindValue(":data_nascimento", $pessoa->getDataNascimento());
             $con_sql->bindValue(":telefone", $pessoa->getTelefone());
             $con_sql->bindValue(":email", $pessoa->getEmail());
-=======
+
             $con = ConnectionFactory::getConnection()->prepare($sql);
             $con->bindValue(":nome_completo", $pessoa->getNomeCompleto());
             $con->bindValue(":data_nascimento", $pessoa->getDataNascimento());
             $con->bindValue(":telefone", $pessoa->getTelefone());
             $con->bindValue(":email", $pessoa->getEmail());
->>>>>>> 5f07110e631c1273ed3bafe74297a1b092bea77d
+
 
             return $con->execute();
         } catch (PDOException $ex) {
