@@ -1,49 +1,55 @@
 <?php
-//Herança de pessoa
- class Paciente extends Pessoa{
+include_once 'Pessoa.php';
+
+class Paciente extends Pessoa {
     private $registro;
     private $data;
     private $periodo;
-
     private $nomeMae;
     private $examesSolicitados;
 
-
-    
-    public function getRegistro(){
+    public function getRegistro() {
         return $this->registro;
     }
-    public function setRegistro($registro){
+
+    public function setRegistro($registro) {
         $this->registro = $registro;
     }
-    public function getData(){
+
+    public function getData() {
         return $this->data;
     }
-    public function setData($data){
+
+    public function setData($data) {
         $this->data = $data;
     }
-    public function getPeriodo(){
+
+    public function getPeriodo() {
         return $this->periodo;
     }
-    public function setPeriodo($periodo){
+
+    public function setPeriodo($periodo) {
         $this->periodo = $periodo;
     }
-       public function getnomeMae(){
+
+    public function getNomeMae() {
         return $this->nomeMae;
     }
-    public function setnomeMae($nomeMae){
+
+    public function setNomeMae($nomeMae) {
         $this->nomeMae = $nomeMae;
     }
-    public function getExamesSolicitados(){
+
+    public function getExamesSolicitados() {
         return $this->examesSolicitados;
     }
-    public function setExamesSolicitados($examesSolicitados){
+
+    public function setExamesSolicitados($examesSolicitados) {
         $this->examesSolicitados = $examesSolicitados;
     }
- //toString
- public function __toString(){
-    return "{parent::__toString()}Pacientes - Registro: {$this->registro} Data: {$this->data} Periodo: {$this->periodo} Nome da mãe: {$this->nomeMae} Exames Solicitados: {$this->examesSolicitados}  ";
-   }
 
- }
+    public function __toString(){
+        return parent::__toString() . ", Registro: {$this->registro}, Data: {$this->data}, Período: {$this->periodo}, Nome da Mãe: {$this->nomeMae}, Exames Solicitados: {$this->examesSolicitados}";
+    }
+}
 ?>

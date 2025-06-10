@@ -1,7 +1,7 @@
 <?php
 
-require_once 'pessoa.php';
-require_once 'ConnectionPessoa.php';
+require_once __DIR__ . '/../model/Pessoa.php';
+require_once __DIR__ . '/ConnectionFactory.php';
 
 class PessoaDao {
 
@@ -10,15 +10,23 @@ class PessoaDao {
             $sql = "INSERT INTO pessoa (nome, data_nascimento, telefone, email) 
                     VALUES (:nome_completo, :data_nascimento, :telefone, :email)";
             
+<<<<<<< HEAD
             $con_sql = ConnectionPessoa::getConnection()->prepare($sql);
             $con_sql->bindValue(":nomeo", $pessoa->getNomeCompleto());
             $con_sql->bindValue(":data_nascimento", $pessoa->getDataNascimento());
             $con_sql->bindValue(":telefone", $pessoa->getTelefone());
             $con_sql->bindValue(":email", $pessoa->getEmail());
+=======
+            $con = ConnectionFactory::getConnection()->prepare($sql);
+            $con->bindValue(":nome_completo", $pessoa->getNomeCompleto());
+            $con->bindValue(":data_nascimento", $pessoa->getDataNascimento());
+            $con->bindValue(":telefone", $pessoa->getTelefone());
+            $con->bindValue(":email", $pessoa->getEmail());
+>>>>>>> 5f07110e631c1273ed3bafe74297a1b092bea77d
 
-            return $con_sql->execute();
+            return $con->execute();
         } catch (PDOException $ex) {
-            echo "<p>Erro ao inserir Pessoa no banco de dados!</p> $ex";
+            echo "<p>Erro ao inserir pessoa: {$ex->getMessage()}</p>";
             return false;
         }
     }
@@ -26,20 +34,35 @@ class PessoaDao {
     public function read() {
         try {
             $sql = "SELECT * FROM pessoa";
-            $con_sql = ConnectionPessoa::getConnection()->query($sql);
-            $lista = $con_sql->fetchAll(PDO::FETCH_ASSOC);
+            $stmt = ConnectionFactory::getConnection()->query($sql);
+            $lista = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $pessoaList = [];
 
             foreach ($lista as $linha) {
                 $pessoaList[] = $this->mapearPessoa($linha);
             }
 
-            echo "Temos " . count($pessoaList) . " pessoas cadastradas";
             return $pessoaList;
-
         } catch (PDOException $ex) {
-            echo "<p>Ocorreu um erro ao selecionar pessoas</p> $ex";
+            echo "<p>Erro ao buscar pessoas: {$ex->getMessage()}</p>";
             return [];
+        }
+    }
+
+    public function buscaPorId($id) {
+        try {
+            $sql = "SELECT * FROM pessoa WHERE id = :id";
+            $con = ConnectionFactory::getConnection()->prepare($sql);
+            $con->bindValue(":id", $id);
+            $con->execute();
+            $linha = $con->fetch(PDO::FETCH_ASSOC);
+
+            if (!$linha) return null;
+
+            return $this->mapearPessoa($linha);
+        } catch (PDOException $ex) {
+            echo "<p>Erro ao buscar pessoa: {$ex->getMessage()}</p>";
+            return null;
         }
     }
 
@@ -53,6 +76,3 @@ class PessoaDao {
         return $pessoa;
     }
 }
-
-
-?>
