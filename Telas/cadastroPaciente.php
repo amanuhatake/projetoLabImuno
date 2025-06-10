@@ -54,7 +54,7 @@
 
             <div class="mb-3">
                 <label for="mae" class="form-label">Nome da mãe:</label>
-                <input type="text" name="mae" id="mae" class="form-control" placeholder="Digite o nome da mãe" required
+                <input type="text" name="nomeMae" id="mae" class="form-control" placeholder="Digite o nome da mãe" required
                    value="<?php isset($paciente) && $paciente->getnomeMae() ? $Paciente->getnomeMae(): '' ?>"
                      >
             </div>

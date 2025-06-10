@@ -1,0 +1,19 @@
+{
+    "name": "xpto",
+    "version": "2.0.0",
+    "description": "Projeto para o laboratorio de enfermagem e biomedica, ultilizado para cadastro de pacientes, anotações de exames solicitados e o laudo final",
+    "license": "ISC",
+    "author": "Danieli de Campos",
+    "type": "commonjs",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "node index.js",
+      "dev": "nodemon index.js"
+    },
+    "dependencies": {
+      "ejs": "^3.1.10",
+      "express": "^5.1.0"
+    }
+  }
+  

@@ -7,7 +7,7 @@ $pessoa = new Pessoa();
 $pessoaDao = new PessoaDao();
 
 if (isset($_POST['cadastrar'])) {
-    $pessoa->setNomeCompleto($_POST['nomeCompleto']);
+    $pessoa->setNome($_POST['nome']);
     $pessoa->setDataNascimento($_POST['dataNascimento']);
     $pessoa->setTelefone($_POST['telefone']);
     $pessoa->setEmail($_POST['email']);

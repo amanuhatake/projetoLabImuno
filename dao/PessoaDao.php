@@ -7,11 +7,11 @@ class PessoaDao {
 
     public function inserir(Pessoa $pessoa) {
         try {
-            $sql = "INSERT INTO pessoa (nome_completo, data_nascimento, telefone, email) 
+            $sql = "INSERT INTO pessoa (nome, data_nascimento, telefone, email) 
                     VALUES (:nome_completo, :data_nascimento, :telefone, :email)";
             
             $con_sql = ConnectionPessoa::getConnection()->prepare($sql);
-            $con_sql->bindValue(":nome_completo", $pessoa->getNomeCompleto());
+            $con_sql->bindValue(":nomeo", $pessoa->getNomeCompleto());
             $con_sql->bindValue(":data_nascimento", $pessoa->getDataNascimento());
             $con_sql->bindValue(":telefone", $pessoa->getTelefone());
             $con_sql->bindValue(":email", $pessoa->getEmail());
@@ -45,7 +45,7 @@ class PessoaDao {
 
     private function mapearPessoa($linha) {
         $pessoa = new Pessoa(
-            $linha['nome_completo'],
+            $linha['nome'],
             $linha['data_nascimento'],
             $linha['telefone'],
             $linha['email']
