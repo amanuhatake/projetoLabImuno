@@ -47,14 +47,13 @@
 
             <div class="mb-3">
                 <label for="mae" class="form-label">Nome da mãe:</label>
-<<<<<<< HEAD
+
                 <input type="text" name="nomeMae" id="mae" class="form-control" placeholder="Digite o nome da mãe" required
-                   value="<?php isset($paciente) && $paciente->getnomeMae() ? $Paciente->getnomeMae(): '' ?>"
-                     >
-=======
+                   value="<?php isset($paciente) && $paciente->getnomeMae() ? $Paciente->getnomeMae(): '' ?>">
+
                 <input type="text" name="mae" id="mae" class="form-control" placeholder="Digite o nome da mãe" required
                     value="<?php echo isset($paciente) && $paciente->getnomeMae() ? $paciente->getnomeMae() : ''; ?>">
->>>>>>> 5f07110e631c1273ed3bafe74297a1b092bea77d
+
             </div>
 
             <div class="mb-3">
@@ -100,6 +99,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
