@@ -9,7 +9,9 @@
 <body class="bg-light">
 
 <div class="container mt-5">
-    <form action="../controller/pacienteController.php" method="post">
+    <form action="../controller/pacienteController.php" method="POST">
+
+
         <h1 class="text-center">Cadastro de Pacientes - LEAC</h1>
 
         <div class="card p-4 mt-3">
@@ -47,12 +49,8 @@
 
             <div class="mb-3">
                 <label for="mae" class="form-label">Nome da mãe:</label>
-
                 <input type="text" name="nomeMae" id="mae" class="form-control" placeholder="Digite o nome da mãe" required
-                   value="<?php isset($paciente) && $paciente->getnomeMae() ? $Paciente->getnomeMae(): '' ?>">
-
-                <input type="text" name="mae" id="mae" class="form-control" placeholder="Digite o nome da mãe" required
-                    value="<?php echo isset($paciente) && $paciente->getnomeMae() ? $paciente->getnomeMae() : ''; ?>">
+                   value="<?php echo isset($paciente) && $paciente->getNomeMae() ? $paciente->getNomeMae() : ''; ?>">
 
             </div>
 

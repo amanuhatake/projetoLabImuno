@@ -1,95 +1,50 @@
 <?php
-require_once __DIR__ . '/../dao/ConnectionFactory.php';
-require_once __DIR__ . '/../dao/PessoaDao.php';
-require_once __DIR__ . '/../dao/PacienteDao.php';
+require_once '../dao/PessoaDao.php';
+require_once '../model/Pessoa.php';
 
-require_once __DIR__ . '/../model/Pessoa.php';
-require_once __DIR__ . '/../model/Paciente.php';
+require_once '../dao/ConnectionFactory.php';
+require_once '../dao/PacienteDao.php';
+require_once '../model/Paciente.php';
 
-$pacienteDao = new PacienteDao();
-$pessoaDao = new PessoaDao();
 
-// Cadastro de novo paciente
 if (isset($_POST['cadastrar'])) {
-    echo "HOLAAAA";
-    $paciente = new Paciente();
-    
-    //$paciente->setRegistro($_POST['registro']);
-    //$paciente->setData($_POST['data']);
-    $paciente->setPeriodo($_POST['periodo']);
-    //$paciente->setExamesSolicitados($_POST['examesSolicitados']);
-    
-    $paciente->setNome($_POST['nome']);
-    $paciente->setData_Nascimento($_POST['Data_Nascimento']);
-    $paciente->setTelefone($_POST['telefone']);
-    $paciente->setEmail($_POST['email']);
-    $paciente->setNomeMae($_POST['nomeMae']);
+    $pessoa = new Pessoa();
+    $pessoa->setNome($_POST['nome']);
+    $pessoa->setData_Nascimento($_POST['Data_Nascimento']);
+    $pessoa->setTelefone($_POST['telefone']);
+    $pessoa->setEmail($_POST['email']);
 
-    $pessoaDao->inserir($paciente);
-    $pacienteDao->inserir($paciente);
-    header("Location: ../Telas/cadastroPaciente.php");
-}
+    $pessoaDao = new PessoaDao();
+    $registro = $pessoaDao->inserir($pessoa);
 
-// Edição de paciente (carregar dados para formulário)
-if (isset($_GET['editar'])) {
-    $registro = $_GET['editar'];
-    $paciente = $pacienteDao->buscaPorId($registro);
-    if (!isset($paciente)) {
-        echo "<p>Paciente de Registro {$registro} não encontrado.</p>";
-        header("Location: ../cadastroPaciente.php?erro=nao_encontrado");
-        exit;
+    if ($registro) {
+        $paciente = new Paciente();
+        $paciente->setRegistro($registro);
+        $paciente->setData(date('Y-m-d'));
+        $paciente->setPeriodo($_POST['periodo']);
+        $paciente->setNomeMae($_POST['nomeMae']);
+        $paciente->setExamesSolicitados(implode(', ', $_POST['exame'] ?? []));
+
+        $pacienteDao = new PacienteDao();
+        $pacienteDao->inserir($paciente);
     }
-}
 
-// Salvando a edição
-if (isset($_POST['salvar_edicao'])) {
-    $paciente = new Paciente();
-
-    $paciente->setRegistro($_POST['registro']);
-    $paciente->setData($_POST['data']);
-    $paciente->setPeriodo($_POST['periodo']);
-    $paciente->setExamesSolicitados($_POST['examesSolicitados']);
-    
-    $paciente->setNome($_POST['nome']);
-    $paciente->setData_Nascimento($_POST['Data_Nascimento']);
-    $paciente->setTelefone($_POST['telefone']);
-    $paciente->setEmail($_POST['email']);
-    $paciente->setNomeMae($_POST['nomeMae']);
-
-    $pessoaDao->atualizar($paciente);
-    $pacienteDao->atualizar($paciente);
-
-    header("Location: ../cadastroPaciente.php");
+    header("Location: ../Telas/cadastroPaciente.php");
     exit;
 }
 
-// Função para listar todos os pacientes
-function lista()
-{
-    $pacienteDao = new PacienteDao();
-    $lista = $pacienteDao->read();
+function lista() {
+    $dao = new PacienteDao();
+    $pacientes = $dao->read();
 
-    echo "<table class='table table-striped mt-4'>";
-    echo "<thead><tr>
-            <th>Registro</th>
-            <th>Nome</th>
-            <th>Data</th>
-            <th>Período</th>
-            <th>Exames Solicitados</th>
-            <th>Ações</th>
-          </tr></thead><tbody>";
-
-    foreach ($lista as $pac) {
-        echo "<tr>
-                <td>" . $pac->getRegistro() . "</td>
-                <td>" . $pac->getNome() . "</td>
-                <td>" . $pac->getData() . "</td>
-                <td>" . $pac->getPeriodo() . "</td>
-                <td>" . $pac->getExamesSolicitados() . "</td>
-                <td><a href='cadastroPaciente.php?editar=" . $pac->getRegistro() . "' class='btn btn-sm btn-warning'>Editar</a></td>
-              </tr>";
+    if (empty($pacientes)) {
+        echo "<p>Nenhum paciente cadastrado.</p>";
+    } else {
+        echo "<h3>Lista de Pacientes</h3><ul>";
+        foreach ($pacientes as $paciente) {
+            echo "<li>" . $paciente . "</li>";
+        }
+        echo "</ul>";
     }
-
-    echo "</tbody></table>";
 }
 ?>
