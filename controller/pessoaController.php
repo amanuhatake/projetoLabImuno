@@ -8,11 +8,11 @@ $pessoaDao = new PessoaDao();
 
 if (isset($_POST['cadastrar'])) {
     $pessoa->setNome($_POST['nome']);
-    $pessoa->setDataNascimento($_POST['dataNascimento']);
+    $pessoa->setData_Nascimento($_POST['Data_Nascimento']);
     $pessoa->setTelefone($_POST['telefone']);
     $pessoa->setEmail($_POST['email']);
 
     $pessoaDao->inserir($pessoa);
-    // header("Location: ../index.php");
+    header("Location: ../cadastroPaciente.php");
 }
 ?>

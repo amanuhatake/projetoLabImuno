@@ -11,21 +11,23 @@ $pessoaDao = new PessoaDao();
 
 // Cadastro de novo paciente
 if (isset($_POST['cadastrar'])) {
+    echo "HOLAAAA";
     $paciente = new Paciente();
     
-    $paciente->setRegistro($_POST['registro']);
-    $paciente->setData($_POST['data']);
+    //$paciente->setRegistro($_POST['registro']);
+    //$paciente->setData($_POST['data']);
     $paciente->setPeriodo($_POST['periodo']);
-    $paciente->setExamesSolicitados($_POST['examesSolicitados']);
+    //$paciente->setExamesSolicitados($_POST['examesSolicitados']);
     
-    $paciente->setNomeCompleto($_POST['nome']);
-    $paciente->setDataNascimento($_POST['dataNascimento']);
+    $paciente->setNome($_POST['nome']);
+    $paciente->setData_Nascimento($_POST['Data_Nascimento']);
     $paciente->setTelefone($_POST['telefone']);
     $paciente->setEmail($_POST['email']);
     $paciente->setNomeMae($_POST['nomeMae']);
 
     $pessoaDao->inserir($paciente);
     $pacienteDao->inserir($paciente);
+    header("Location: ../Telas/cadastroPaciente.php");
 }
 
 // Edição de paciente (carregar dados para formulário)
@@ -48,8 +50,8 @@ if (isset($_POST['salvar_edicao'])) {
     $paciente->setPeriodo($_POST['periodo']);
     $paciente->setExamesSolicitados($_POST['examesSolicitados']);
     
-    $paciente->setNomeCompleto($_POST['nome']);
-    $paciente->setDataNascimento($_POST['dataNascimento']);
+    $paciente->setNome($_POST['nome']);
+    $paciente->setData_Nascimento($_POST['Data_Nascimento']);
     $paciente->setTelefone($_POST['telefone']);
     $paciente->setEmail($_POST['email']);
     $paciente->setNomeMae($_POST['nomeMae']);
@@ -80,7 +82,7 @@ function lista()
     foreach ($lista as $pac) {
         echo "<tr>
                 <td>" . $pac->getRegistro() . "</td>
-                <td>" . $pac->getNomeCompleto() . "</td>
+                <td>" . $pac->getNome() . "</td>
                 <td>" . $pac->getData() . "</td>
                 <td>" . $pac->getPeriodo() . "</td>
                 <td>" . $pac->getExamesSolicitados() . "</td>

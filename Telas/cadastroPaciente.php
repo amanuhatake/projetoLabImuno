@@ -9,7 +9,7 @@
 <body class="bg-light">
 
 <div class="container mt-5">
-    <form action="ControllerPaciente.php" method="post">
+    <form action="../controller/pacienteController.php" method="post">
         <h1 class="text-center">Cadastro de Pacientes - LEAC</h1>
 
         <div class="card p-4 mt-3">
@@ -28,9 +28,9 @@
             </div>
 
             <div class="mb-3">
-                <label for="datanascimento" class="form-label">Data de Nascimento:</label>
-                <input type="date" id="datanascimento" name="datanascimento" class="form-control" required
-                    value="<?php echo isset($paciente) && $paciente->getdataNascimento() ? $paciente->getdataNascimento() : ''; ?>">
+                <label for="Data_Nascimento" class="form-label">Data de Nascimento:</label>
+                <input type="date" id="Data_Nascimento" name="Data_Nascimento" class="form-control" required
+                    value="<?php echo isset($paciente) && $paciente->getData_Nascimento() ? $paciente->getData_Nascimento() : ''; ?>">
             </div>
 
             <div class="mb-3">
@@ -84,7 +84,7 @@
                 ?>
             </div>
 
-            <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+            <button type="submit" class="btn btn-primary mt-3" name="cadastrar">Enviar</button>
 
             <div class="mt-4">
                 <?php
