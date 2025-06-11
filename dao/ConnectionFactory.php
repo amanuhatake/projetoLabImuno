@@ -5,7 +5,7 @@ class ConnectionFactory {
     public static function getConnection() {
         if (!isset(self::$connection)) {
             $host = 'localhost';
-            $port = 3306;
+            $port = 3308;
             $dbName = 'laboratorio';
             $user = 'root';
             $pass = '';
