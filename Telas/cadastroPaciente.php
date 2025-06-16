@@ -48,8 +48,8 @@
             </div>
 
             <div class="mb-3">
-                <label for="mae" class="form-label">Nome da mãe:</label>
-                <input type="text" name="nomeMae" id="mae" class="form-control" placeholder="Digite o nome da mãe" required
+                <label for="nomeMae" class="form-label">Nome da mãe:</label>
+                <input type="text" name="nomeMae" id="NomeMae" class="form-control" placeholder="Digite o nome da mãe" required
                    value="<?php echo isset($paciente) && $paciente->getNomeMae() ? $paciente->getNomeMae() : ''; ?>">
 
             </div>

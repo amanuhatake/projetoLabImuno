@@ -22,7 +22,7 @@ if (isset($_POST['cadastrar'])) {
         $paciente->setRegistro($registro);
         $paciente->setData(date('Y-m-d'));
         $paciente->setPeriodo($_POST['periodo']);
-        $paciente->setNomeMae($_POST['nomeMae']);
+        $paciente->setNomeMae($_POST['nomeMae']); 
         $paciente->setExamesSolicitados(implode(', ', $_POST['exame'] ?? []));
 
         $pacienteDao = new PacienteDao();
