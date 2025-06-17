@@ -19,6 +19,13 @@
         <div class="card p-4 mt-3">
 
             <div class="mb-3">
+             <label for="data" class="form-label">Data:</label>
+             <input type="date" id="data" name="data" class="form-control" required
+             readonly onclick="preencherDataAtual()"
+             value="<?= isset($paciente) && $paciente->getData() ? $paciente->getData() : '' ?>">
+            </div>  
+
+            <div class="mb-3">
                 <label for="nome" class="form-label">Nome completo:</label>
                 <input type="text" id="nome" name="nome" class="form-control" placeholder="Digite seu nome..." required
                     value="<?= isset($paciente) && $paciente->getNome() ? $paciente->getNome() : '' ?>">
@@ -34,7 +41,7 @@
 
             <div class="mb-3">
                 <label for="dataNascimento" class="form-label">Data de Nascimento:</label>
-                <input type="date" id="dataNascimento" name="data_Nascimento" class="form-control" required
+                <input type="date" id="Data_Nascimento" name="Data_Nascimento" class="form-control" required
                     value="<?= isset($paciente) && $paciente->getData_Nascimento() ? $paciente->getData_Nascimento() : '' ?>">
             </div>
 
@@ -78,16 +85,21 @@
 
             <div class="mb-3">
               <label class="form-label">Exames solicitados:</label><br />
-                <?php
-               $exames = ['Microbiologia', 'Parasitologia', 'Hematologia', 'Bioquímica', 'Urinálise'];
-               $examesSelecionados = explode(',', $paciente->getExamesSolicitados());
+                 <?php
+                 $exames = ['Microbiologia', 'Parasitologia', 'Hematologia', 'Bioquímica', 'Urinálise'];
 
-              foreach ($exames as $exame) {
-              $checked = in_array($exame, $examesSelecionados) ? 'checked' : '';
-              echo "<input type='checkbox' value='$exame' id='ex_$exame' name='examesSolicitados[]' $checked>";
-              echo "<label for='ex_$exame'>$exame</label><br />";
-}
+                 // Só tenta carregar exames selecionados se estiver editando um paciente
+                 $examesSelecionados = [];
 
+                 if (isset($paciente) && method_exists($paciente, 'getExamesSolicitados') && $paciente->getExamesSolicitados()) {
+                  $examesSelecionados = explode(',', $paciente->getExamesSolicitados());
+                 }
+
+                 foreach ($exames as $exame) {
+                      $checked = in_array($exame, $examesSelecionados) ? 'checked' : '';
+                      echo "<input type='checkbox' value='$exame' id='ex_$exame' name='examesSolicitados[]' $checked>";
+                  echo "<label for='ex_$exame'>$exame</label><br />";
+                }
             ?>
             </div>
             <div class="mt-4">
@@ -124,6 +136,20 @@
         medSim.addEventListener('change', toggleMedicamentoNome);
         medNao.addEventListener('change', toggleMedicamentoNome);
     });
+</script>
+
+
+<script>
+function preencherDataAtual() {
+    const input = document.getElementById('data');
+    if (!input.value) {
+        const hoje = new Date();
+        const ano = hoje.getFullYear();
+        const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+        const dia = String(hoje.getDate()).padStart(2, '0');
+        input.value = `${ano}-${mes}-${dia}`;
+    }
+}
 </script>
 
 <style>

@@ -6,7 +6,6 @@ require __DIR__. '/../dao/PacienteDaoSQL.php';
 
 $pacienteDao = new PacienteDaoSQL();
 
-
 if(isset($_POST['cadastrar'])){
     $paciente = new Paciente();
     $paciente->setNome($_POST['nome']);
@@ -16,10 +15,12 @@ if(isset($_POST['cadastrar'])){
     $paciente->setEmail($_POST['email']);
     $paciente->setData_Nascimento($_POST['Data_Nascimento']);
     $paciente->setPeriodo($_POST['periodo']);
+    $paciente->setMedicamento($_POST['medicamento']);
+    $paciente->setMedicamentoNome($_POST['medicamentoNome']);
   
-$exames = isset($_POST['examesSolicitados']) ? $_POST['examesSolicitados'] : [];
-$examesString = implode(',', $exames);
-$paciente->setExamesSolicitados($examesString);
+    $exames = isset($_POST['examesSolicitados']) ? $_POST['examesSolicitados'] : [];
+    $examesString = implode(',', $exames);
+    $paciente->setExamesSolicitados($examesString);
 
 
     $pacienteDao->inserir($paciente);
@@ -48,7 +49,9 @@ if(isset($_POST['salvar_edicao'])){
     $paciente->setPeriodo($_POST['periodo']);
     $paciente->setNomeMae($_POST['nomeMae']);
     $paciente->setEmail($_POST['email']);
-    $paciente->setData_Nascimento($_POST['data_Nascimento']);
+    $paciente->setData_Nascimento($_POST['Data_Nascimento']);
+    $paciente->setMedicamento($_POST['medicamento']);
+    $paciente->setMedicamentoNome($_POST['medicamentoNome']);
     $exames = isset($_POST['examesSolicitados']) ? $_POST['examesSolicitados'] : [];
 $examesString = implode(',', $exames);
 $paciente->setExamesSolicitados($examesString);
@@ -74,6 +77,9 @@ function listar(){
         <td> {$pac->getExamesSolicitados()}</td>
         <td> {$pac->getEmail()}</td>
         <td> {$pac->getData_Nascimento()}</td>
+        <td> {$pac->getMedicamento()}</td>
+        <td> {$pac->getMedicamentoNome()}</td>
+        
         <td> 
             <a href='listarPaciente.php?editar={$pac->getRegistro()}'> 
                 <i class='bi bi-pencil-square'></i> 

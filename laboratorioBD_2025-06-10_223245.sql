@@ -39,7 +39,11 @@ CREATE TABLE paciente (
   examesSolicitados VARCHAR(255) DEFAULT NULL,
   Email VARCHAR(255) DEFAULT NULL,
   Data_Nascimento DATE DEFAULT NULL,
+  medicamento VARCHAR(255) DEFAULT NULL,
+  medicamentoNome VARCHAR(255) DEFAULT NULL,
+  patologia VARCHAR(255) DEFAULT NULL,
   PRIMARY KEY (registro)
 );
+
 
 
