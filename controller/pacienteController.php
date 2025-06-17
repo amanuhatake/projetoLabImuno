@@ -1,50 +1,81 @@
 <?php
-require_once '../dao/PessoaDao.php';
-require_once '../model/Pessoa.php';
-
-require_once '../dao/ConnectionFactory.php';
-require_once '../dao/PacienteDao.php';
-require_once '../model/Paciente.php';
+require __DIR__. '/../dao/ConnectionFactory.php';
+require __DIR__. '/../model/Paciente.php';
+require __DIR__. '/../dao/PacienteDaoSQL.php';
 
 
-if (isset($_POST['cadastrar'])) {
-    $pessoa = new Pessoa();
-    $pessoa->setNome($_POST['nome']);
-    $pessoa->setData_Nascimento($_POST['Data_Nascimento']);
-    $pessoa->setTelefone($_POST['telefone']);
-    $pessoa->setEmail($_POST['email']);
+$pacienteDao = new PacienteDaoSQL();
 
-    $pessoaDao = new PessoaDao();
-    $registro = $pessoaDao->inserir($pessoa);
 
-    if ($registro) {
-        $paciente = new Paciente();
-        $paciente->setRegistro($registro);
-        $paciente->setData(date('Y-m-d'));
-        $paciente->setPeriodo($_POST['periodo']);
-        $paciente->setNomeMae($_POST['nomeMae']); 
-        $paciente->setExamesSolicitados(implode(', ', $_POST['exame'] ?? []));
+if(isset($_POST['cadastrar'])){
+    $paciente = new Paciente();
+    $paciente->setNome($_POST['nome']);
+    $paciente->setTelefone($_POST['telefone']);
+    $paciente->setData($_POST['data']);
+    $paciente->setNomeMae($_POST['nomeMae']);
+    $paciente->setExamesSolicitados($_POST['examesSolicitados']);
+    $paciente->setEmail($_POST['email']);
+    $paciente->setData_Nascimento($_POST['Data_Nascimento']);
 
-        $pacienteDao = new PacienteDao();
-        $pacienteDao->inserir($paciente);
-    }
-
-    header("Location: ../Telas/cadastroPaciente.php");
-    exit;
+    $pacienteDao->inserir($paciente);
+    header("Location: ../views/listarPaciente.php");
+    exit();
 }
 
-function lista() {
-    $dao = new PacienteDao();
-    $pacientes = $dao->read();
+if(isset($_GET['editar'])){
+    $registroPaciente = $_GET['editar'];
+    
+    $paciente = $pacienteDao->buscarPorRegistro($registroPaciente);
 
-    if (empty($pacientes)) {
-        echo "<p>Nenhum paciente cadastrado.</p>";
-    } else {
-        echo "<h3>Lista de Pacientes</h3><ul>";
-        foreach ($pacientes as $paciente) {
-            echo "<li>" . $paciente . "</li>";
-        }
-        echo "</ul>";
+    if(!$paciente->getRegistro()){ // Se o ID do objeto $paciente ainda não foi setado
+        echo "<p>Paciente não encontrado para edição.</p>";
+        header("Location: ../views/listarPaciente.php?erro=nao_encontrado");
+        exit();
     }
 }
+
+if(isset($_POST['salvar_edicao'])){
+    $paciente = new Paciente();
+    $paciente->setRegistro($_POST['registro']); // O ID é crucial para o método UPDATE do DAO
+    $paciente->setNome($_POST['nome']);
+    $paciente->setTelefone($_POST['telefone']);
+    $paciente->setData($_POST['data']);
+    $paciente->setPeriodo($_POST['periodo']);
+    $paciente->setNomeMae($_POST['nomeMae']);
+    $paciente->setExamesSolicitados($_POST['examesSolicitados']);
+    $paciente->setEmail($_POST['email']);
+    $paciente->setData_Nascimento($_POST['data_Nascimento']);
+
+    echo "Controller linha 36";
+    $pacienteDao->editar($paciente); // Chama o método editar no DAO
+
+    header("Location: ../views/listarPaciente.php"); // Redireciona de volta para a lista
+    exit();
+}
+
+function listar(){
+    $pacienteDao = new PacienteDaoSQL();
+    $lista = $pacienteDao->read();
+    foreach($lista as $pac){
+        echo "<tr>
+        <td> {$pac->getRegistro()} </td>
+        <td> {$pac->getNome()}</td>
+        <td> {$pac->getTelefone()}</td>
+        <td> {$pac->getData()}</td>
+        <td> {$pac->getPeriodo()}</td>
+        <td> {$pac->getNomeMae()}</td>
+        <td> {$pac->getExamesSolicitados()}</td>
+        <td> {$pac->getEmail()}</td>
+        <td> {$pac->getData_Nascimento()}</td>
+        <td> 
+            <a href='listarPaciente.php?editar={$pac->getRegistro()}'> 
+                <i class='bi bi-pencil-square'></i> 
+                Editar</a> 
+                <a href='#'> Exluir</a> 
+        </td>
+    </tr>";
+    }
+}
+
+
 ?>

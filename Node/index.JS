@@ -1,52 +1,97 @@
-//Importando a biblioteca Express
-const express = require("express");
+const express = require('express');
+const bodyParser = require('body-parser');
+const fs = require('fs');
+const path = require('path');
+
 const app = express();
-//Configurando para receber os dados do cliente em formato JSON
-app.use(express.json());
+const DATA_FILE = path.join(__dirname, 'paciente.json');
 
-//Configurando o Express para usar o EJS para as Views
-app.set('view engine', 'ejs');
+app.use(bodyParser.json());
 
-app.get("/", (req, res) => {
-    //res.send("Bem vindo ao sistema!");
-    res.render("index");
+function lerPacientes() {
+  if (!fs.existsSync(DATA_FILE)) return [];
+  const data = fs.readFileSync(DATA_FILE, 'utf-8');
+  return JSON.parse(data);
+}
+
+function salvarPaciente(data) {
+  fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2));
+}
+
+function getNextRegistro(pacientes) {
+  return pacientes.length > 0 ? Math.max(...pacientes.map(p => p.registro)) + 1 : 1;
+}
+
+// Listar todos os pacientes
+app.get('/pacientes', (req, res) => {
+  const pacientes = lerPacientes();
+  res.json(pacientes);
 });
 
-app.get("/paciente", (req, res) => {
-    res.send("Listagem de paciente!!");
+// Buscar paciente por ID
+app.get('/pacientes/:registro', (req, res) => {
+  const registro = parseInt(req.params.registro);
+  const pacientes = lerPacientes();
+  const paciente = pacientes.find(p => p.registro === registro);
+  if (!paciente) return res.status(404).json({ message: 'Paciente não encontrado' });
+  res.json(paciente);
 });
 
-//ATENCAO
-app.get("/carrinho", (req, res) => {
-    //Enviando um código HTML para o cliente
-    res.end("<html><head><title>Carrinho de compras</title></head><h4>Carrinho de Compras!</h4></html>");
+// Inserir novo paciente
+app.post('/pacientes', (req, res) => {
+  const { nome, telefone, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento } = req.body;
+  const pacientes = lerPacientes();
+  const novoPaciente = { 
+  registro: getNextRegistro(pacientes), // gera o número automaticamente
+  nome, 
+  telefone, 
+  data, 
+  periodo, 
+  nomeMae, 
+  examesSolicitados,
+  Data_Nascimento,
+  Email
+};
+
+  pacientes.push(novoPaciente);
+  salvarPaciente(pacientes);
+  res.status(201).json(novoPaciente);
 });
 
-app.get("/fornecedor/:nome", (req, res) => {
-    //Recuperando o parâmetro "nome" passado na URL
-    const nome = req.params.nome;
-    console.log("Nome do fornecedor: ", nome);
-    res.send(`Olá ${nome}`);
+// Editar paciente existente
+app.put('/pacientes/:registro', (req, res) => {
+  const registro = parseInt(req.params.registro);
+  const pacientes = lerPacientes();
+  const paciente = pacientes.find(p => p.registro === registro);
+  if (!paciente) return res.status(404).json({ message: 'Paciente não encontrado' });
+
+  const { nome, telefone, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento } = req.body;
+  paciente.nome = nome ?? paciente.nome;
+  paciente.telefone = telefone ?? paciente.telefone;
+  paciente.data = data ?? paciente.data;
+  paciente.periodo = periodo ?? paciente.periodo;
+  paciente.nomeMae = nomeMae ?? paciente.nomeMae;
+  paciente.examesSolicitados = examesSolicitados ?? paciente.examesSolicitados;
+  paciente.Email = Email ?? paciente.Email;
+  paciente.Data_Nascimento = Data_Nascimento ?? paciente.Data_Nascimento;
+
+  salvarPaciente(pacientes);
+  res.json(paciente);
 });
 
-app.get("/editarpaciente/:pacienteregistro", (req, res) => {
-    const id = req.params.pacienteregistro;
-    console.log("Registro do paciente: ", registro);
-    res.send("Editando o paciente com o registro: " + registro);
+// Excluir paciente
+app.delete('/pacientes/:registro', (req, res) => {
+  const registro = parseInt(req.params.registro);
+  let pacientes = lerPacientes();
+  const index = pacientes.findIndex(p => p.registro === registro);
+  if (index === -1) return res.status(404).json({ message: 'Paciente não encontrado' });
+
+  pacientes.splice(index, 1);
+  salvarPaciente(pacientes);
+  res.status(204).send();
 });
 
-app.get("/inserpaciente", (req, res) => {
-    res.render("formpaciente");
-})
-//Arrumar
-app.post("/paciente", (req, res) => {
-    console.log(req.body);
-    const {nome, periodo, dataNascimento, telefone, email,nomeMae, medicamento, medicamentoNome, patologia, exame} = req.body;
-    console.log(`Nome: ${nome} Data de nascimento: ${dataNascimento} Telefone: ${telefone} email: ${email} Nome Mae: ${nomeMae} Medicamento: ${medicamento}
-         Nome do medicamento: ${medicamentoNome} Patologia: ${patologia} Exame: ${exame} `);
-    res.send("Paciente inserido com sucesso!");
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`API rodando na porta ${PORT}`);
 });
-
-app.listen(3000, () => {
-    console.log("Servidor rodando na porta 3000");
-})
