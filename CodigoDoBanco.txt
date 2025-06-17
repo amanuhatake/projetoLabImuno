@@ -50,4 +50,3 @@ CREATE TABLE resultado (
     material VARCHAR(200),
     FOREIGN KEY (id_exame_solicitado) REFERENCES exames_solicitados(id_exame_solicitado)
 );
-
