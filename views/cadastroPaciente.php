@@ -34,15 +34,13 @@
 
             <div class="mb-3">
                 <label for="dataNascimento" class="form-label">Data de Nascimento:</label>
-                <input type="date" id="dataNascimento" name="dataNascimento" class="form-control" required
+                <input type="date" id="dataNascimento" name="data_Nascimento" class="form-control" required
                     value="<?= isset($paciente) && $paciente->getData_Nascimento() ? $paciente->getData_Nascimento() : '' ?>">
             </div>
 
             <div class="mb-3">
                 <label for="telefone" class="form-label">Telefone para contato:</label>
                 <input type="tel" name="telefone" id="telefone" class="form-control" placeholder="(DDD) 99999-9999" required
-                    pattern="\(\d{2,3}\) \d{4,5}-\d{4}" 
-                    title="Formato esperado: (DDD) 99999-9999"
                     value="<?= isset($paciente) && $paciente->getTelefone() ? $paciente->getTelefone() : '' ?>">
             </div>
 
@@ -79,16 +77,18 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Exames solicitados:</label><br />
+              <label class="form-label">Exames solicitados:</label><br />
                 <?php
-                    $exames = ['Microbiologia', 'Parasitologia', 'Hematologia', 'Bioquímica', 'Urinálise'];
-                    $examesSelecionados = isset($paciente) ? $paciente->getExames() : [];
-                    foreach ($exames as $exame) {
-                        $checked = in_array($exame, $examesSelecionados) ? 'checked' : '';
-                        echo "<input type='checkbox' value='$exame' id='ex_$exame' name='exame[]' $checked>";
-                        echo "<label for='ex_$exame'>$exame</label><br />";
-                    }
-                ?>
+               $exames = ['Microbiologia', 'Parasitologia', 'Hematologia', 'Bioquímica', 'Urinálise'];
+               $examesSelecionados = explode(',', $paciente->getExamesSolicitados());
+
+              foreach ($exames as $exame) {
+              $checked = in_array($exame, $examesSelecionados) ? 'checked' : '';
+              echo "<input type='checkbox' value='$exame' id='ex_$exame' name='examesSolicitados[]' $checked>";
+              echo "<label for='ex_$exame'>$exame</label><br />";
+}
+
+            ?>
             </div>
             <div class="mt-4">
                 <?php if(isset($paciente) && $paciente->getRegistro()): ?>

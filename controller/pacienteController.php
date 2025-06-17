@@ -13,9 +13,14 @@ if(isset($_POST['cadastrar'])){
     $paciente->setTelefone($_POST['telefone']);
     $paciente->setData($_POST['data']);
     $paciente->setNomeMae($_POST['nomeMae']);
-    $paciente->setExamesSolicitados($_POST['examesSolicitados']);
     $paciente->setEmail($_POST['email']);
     $paciente->setData_Nascimento($_POST['Data_Nascimento']);
+    $paciente->setPeriodo($_POST['periodo']);
+  
+$exames = isset($_POST['examesSolicitados']) ? $_POST['examesSolicitados'] : [];
+$examesString = implode(',', $exames);
+$paciente->setExamesSolicitados($examesString);
+
 
     $pacienteDao->inserir($paciente);
     header("Location: ../views/listarPaciente.php");
@@ -42,9 +47,11 @@ if(isset($_POST['salvar_edicao'])){
     $paciente->setData($_POST['data']);
     $paciente->setPeriodo($_POST['periodo']);
     $paciente->setNomeMae($_POST['nomeMae']);
-    $paciente->setExamesSolicitados($_POST['examesSolicitados']);
     $paciente->setEmail($_POST['email']);
     $paciente->setData_Nascimento($_POST['data_Nascimento']);
+    $exames = isset($_POST['examesSolicitados']) ? $_POST['examesSolicitados'] : [];
+$examesString = implode(',', $exames);
+$paciente->setExamesSolicitados($examesString);
 
     echo "Controller linha 36";
     $pacienteDao->editar($paciente); // Chama o método editar no DAO
