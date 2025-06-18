@@ -2,8 +2,8 @@
 class PacienteDaoSql{
     public function inserir(Paciente $pac){
         try{
-            $sql = "INSERT INTO paciente (nome, telefone, examesSolicitados, Email, Data_Nascimento, medicamento, medicamentoNome, patologia)
-                VALUES (:nome, :telefone, :examesSolicitados, :Email, :Data_Nascimento, :medicamento, :medicamentoNome, :patologia)";
+            $sql = "INSERT INTO paciente (nome, telefone, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento, medicamento, medicamentoNome, patologia)
+                VALUES (:nome, :telefone,:data, :periodo, :nomeMae, :examesSolicitados, :Email, :Data_Nascimento, :medicamento, :medicamentoNome, :patologia)";
             $conn = ConnectionFactory::getConnection()->prepare($sql);
 
             $conn->bindValue(":nome", $pac->getNome());
