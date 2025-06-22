@@ -39,7 +39,7 @@ app.get('/pacientes/:registro', (req, res) => {
 
 // Inserir novo paciente
 app.post('/pacientes', (req, res) => {
-  const { nome, telefone, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento } = req.body;
+  const { nome, telefone, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento, medicamento, medicamentoNome, patologia } = req.body;
   const pacientes = lerPacientes();
   const novoPaciente = { 
   registro: getNextRegistro(pacientes), // gera o número automaticamente
@@ -50,7 +50,11 @@ app.post('/pacientes', (req, res) => {
   nomeMae, 
   examesSolicitados,
   Data_Nascimento,
-  Email
+  Email,
+  medicamento,
+  medicamentoNome,
+  patologia
+
 };
 
   pacientes.push(novoPaciente);
@@ -65,7 +69,7 @@ app.put('/pacientes/:registro', (req, res) => {
   const paciente = pacientes.find(p => p.registro === registro);
   if (!paciente) return res.status(404).json({ message: 'Paciente não encontrado' });
 
-  const { nome, telefone, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento } = req.body;
+  const { nome, telefone, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento, medicamento, medicamentoNome, patologia } = req.body;
   paciente.nome = nome ?? paciente.nome;
   paciente.telefone = telefone ?? paciente.telefone;
   paciente.data = data ?? paciente.data;
@@ -74,6 +78,9 @@ app.put('/pacientes/:registro', (req, res) => {
   paciente.examesSolicitados = examesSolicitados ?? paciente.examesSolicitados;
   paciente.Email = Email ?? paciente.Email;
   paciente.Data_Nascimento = Data_Nascimento ?? paciente.Data_Nascimento;
+  paciente.medicamento = medicamento ?? paciente.medicamento;
+  paciente.medicamentoNome = medicamentoNome ?? paciente.medicamentoNome;
+  paciente.patologia = patologia ?? paciente.patologia;
 
   salvarPaciente(pacientes);
   res.json(paciente);

@@ -12,7 +12,10 @@ class PacienteDao{
             "nomeMae" => $pac->getNomeMae(),
             "examesSolicitados" => $pac->getExamesSolicitados(),
             "Email" => $pac->getEmail(),
-            "Data_Nascimento" => $pac->getData_Nascimento()
+            "Data_Nascimento" => $pac->getData_Nascimento(),
+            "medicamento" => $pac->getMedicamento(),
+            "medicamentoNome" => $pac->getMedicamentoNome(),
+            "patologia" => $pac->getPatologia()
         ];
 
         $options = [
@@ -52,6 +55,9 @@ class PacienteDao{
         $paciente->setExamesSolicitados(htmlspecialchars($row['examesSolicitados']));
         $paciente->setEmail(htmlspecialchars($row['Email']));
         $paciente->setData_Nascimento(htmlspecialchars($row['Data_Nascimento']));
+        $paciente->setMedicamento(htmlspecialchars($row['medicamento']));
+        $paciente->setMedicamentoNome(htmlspecialchars($row['medicamentoNome']));
+        $paciente->setPatologia(htmlspecialchars($row['patologia']));
         return $paciente;
     }
 
@@ -66,7 +72,9 @@ class PacienteDao{
             "examesSolicitados" => $pac->getExamesSolicitados(),
             "Email" => $pac->getEmail(),
             "Data_Nascimento" => $pac->getData_Nascimento(),
-
+            "medicamento" => $pac->getMedicamento(),
+            "medicamentoNome" => $pac->getMedicamentoNome(),
+            "patologia" => $pac->getPatologia()
         ];
 
         $options = [

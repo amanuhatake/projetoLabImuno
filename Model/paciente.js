@@ -9,6 +9,9 @@ class Paciente {
     this.examesSolicitados = examesSolicitados;
     this.Email = Email;
     this.Data_Nascimento = Data_Nascimento;
+    this.medicamento = medicamento;
+    this.medicamentoNome = medicamentoNome;
+    this.patologia = patologia;
   }
 }
 

@@ -20,8 +20,8 @@ router.get('/:registro', (req, res) => {
 
 // Inserir
 router.post('/', (req, res) => {
-  const {nome, telefone, registro, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento} = req.body;
-  const paciente = new Paciente(nextRegistro++, nome, telefone, registro, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento);
+  const {nome, telefone, registro, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento, medicamento, medicamentoNome, patologia} = req.body;
+  const paciente = new Paciente(nextRegistro++, nome, telefone, registro, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento, medicamento, medicamentoNome, patologia);
   pacientes.push(paciente);
   res.status(201).json(paciente);
 });
@@ -32,7 +32,7 @@ router.put('/:registro', (req, res) => {
   const paciente = pacientes.find(p => p.registro === registro);
   if (!paciente) return res.status(404).json({ message: 'paciente não encontrado' });
 
-  const {nome, telefone, registro: novoRegistro, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento} = req.body;
+  const {nome, telefone, registro: novoRegistro, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento, medicamento, medicamentoNome, patologia} = req.body;
   paciente.nome = nome ?? paciente.nome;
   paciente.telefone =  telefone ?? paciente.telefone;
   paciente.registro = novoRegistro ?? paciente.registro;
@@ -42,7 +42,9 @@ router.put('/:registro', (req, res) => {
   paciente.examesSolicitados = examesSolicitados ?? paciente.examesSolicitados;
   paciente.Email = Email ?? paciente.Email;
   paciente.Data_Nascimento = Data_Nascimento ?? paciente.Data_Nascimento;
-
+  paciente.medicamento = medicamento ?? paciente.medicamento;
+  paciente.medicamentoNome = medicamentoNome ?? paciente.medicamentoNome;
+  paciente.patologia = patologia ?? paciente.patologia;
 
   res.json(paciente);
 });
