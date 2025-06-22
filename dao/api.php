@@ -136,6 +136,23 @@ class PacienteDao{
         return [];
     }
 }
+//Função do adrian, para atualizar exames bb
+    public function atualizarExames($registro, $exames) {
+    try {
+        $con = ConnectionFactory::getConnection();
+
+        $sql = "UPDATE paciente SET examesSolicitados = :exames WHERE registro = :registro";
+        $stmt = $con->prepare($sql);
+
+        $stmt->bindValue(':exames', $exames);
+        $stmt->bindValue(':registro', $registro, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+    } catch (PDOException $e) {
+        die("Erro ao atualizar exames: " . $e->getMessage());
+    }
+}
 
 } // Fecha a classe Dao
 ?>
