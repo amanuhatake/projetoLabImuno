@@ -114,6 +114,28 @@ class PacienteDao{
             return null;
         }
     }
+//funçao usada pelo adrian, para buscar por nome em pacientes!
+    public function buscarPorNome($nome)
+{
+    try {
+        $sql = "SELECT * FROM paciente WHERE nome LIKE :nome";
+        $conn = ConnectionFactory::getConnection()->prepare($sql);
+        $conn->bindValue(":nome", "%" . $nome . "%");
+        $conn->execute();
+        $result = $conn->fetchAll(PDO::FETCH_ASSOC);
+
+        $pacientes = [];
+        foreach ($result as $row) {
+            $pacientes[] = $this->listaPaciente($row);
+        }
+
+        return $pacientes;
+
+    } catch (PDOException $ex) {
+        echo "<p>Erro ao buscar paciente por nome: </p> <p> {$ex->getMessage()} </p>";
+        return [];
+    }
+}
 
 } // Fecha a classe Dao
 ?>
