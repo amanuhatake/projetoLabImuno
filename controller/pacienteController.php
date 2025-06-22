@@ -89,6 +89,30 @@ function listar(){
     </tr>";
     }
 }
+//parte Adrian, para atualizar apenas a area de exame!
+if (isset($_POST['atualizar_exames'])) {
+    $registro = $_POST['registro'];
+    $exames = isset($_POST['examesSolicitados']) ? $_POST['examesSolicitados'] : '';
+
+    if (is_array($exames)) {
+        $examesString = implode(',', $exames);
+    } else {
+        $examesString = trim($exames);
+    }
+
+    $pacienteDao->atualizarExames($registro, $examesString);
+
+    header("Location: ../view/ListaPacientes.php?msg=exames_atualizados");
+    exit();
+}
+//parte do Adrian, para mecanismo de busca usado na pagina de exames!
+if (isset($_GET['buscar'])) {
+        $nomeBusca = $_GET['buscar'];
+        $pacientes = $pacienteDao->buscarPorNome($nomeBusca);  // Chama a função de busca no DAO
+    } else {
+        $pacientes = $pacienteDao->read();  // Lista todos os pacientes
+    }
+    
 
 
 ?>
