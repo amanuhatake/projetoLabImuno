@@ -1,0 +1,88 @@
+/* Reset básico para garantir que a formatação seja consistente */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Definir o fundo e a fonte geral */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    margin: 20px;
+}
+
+/* Título */
+h2 {
+    color: #007bff;  /* Azul consistente */
+    margin-bottom: 20px;
+}
+
+/* Caixa de informações (exibe os dados do paciente) */
+.info-section {
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Campo de informações */
+.info-field {
+    margin-bottom: 12px;
+}
+
+/* Label das informações */
+.info-label {
+    font-weight: bold;
+    color: #007bff;  /* Azul consistente */
+}
+
+/* Formulário de edição */
+form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Campo de texto (input e textarea) */
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px;
+    border: 2px solid #007bff;  /* Azul consistente */
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Botão de salvar */
+button[type="submit"] {
+    background-color: #007bff;  /* Azul consistente */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Botão de cancelar */
+a {
+    text-decoration: none;
+    color: #6c757d;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: 2px solid #6c757d;
+    border-radius: 5px;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+a:hover {
+    background-color: #6c757d;
+    color: white;
+}
