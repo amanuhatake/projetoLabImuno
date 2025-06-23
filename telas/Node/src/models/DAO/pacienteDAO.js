@@ -18,7 +18,26 @@ function insertPaciente(nome, telefone, data, periodo, nomeMae, examesSolicitado
     return false;
 }
 
+function editPaciente(nome, telefone, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento, medicamento, medicamentoNome, patologia){
+    if(nome, telefone, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento, medicamento, medicamentoNome, patologia){
+        console.log(`Editando paciente com id: ${registro} -> Nome: ${nome}, - telefone: ${telefone}, - data: ${data}, - periodo: ${periodo}, - nomeMae: ${nomeMae}, - examesSolicitados: ${examesSolicitados},
+             - Email: ${Email}, - Data_Nascimento: ${Data_Nascimento}, - medicamento: ${medicamento}, - medicamentoNome: ${medicamentoNome}, - patologia${patologia}`);
+             return true;
+    }
+    console.error("Falha ao editar paciente, falhou algum dado");
+    return false;
+}
+
+function deletePaciente(registro){
+    if(registro){
+        console.log(`Removendo o paciente por ID: ${registro}`);
+        return true;
+    }
+    console.error("FAlha ao remover paciente, nao foi passado o registro");
+    return false;
+}
 
 
 
-module.exports = { getPacientes, insertPaciente };
+
+module.exports = { getPacientes, insertPaciente, editPaciente, deletePaciente };
