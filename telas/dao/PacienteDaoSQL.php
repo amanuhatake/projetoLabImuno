@@ -106,5 +106,44 @@ class PacienteDaoSql{
             return null;
         }
     }
+    //funçao usada pelo adrian, para buscar por nome em pacientes!
+    public function buscarPorNome($nome)
+{
+    try {
+        $sql = "SELECT * FROM paciente WHERE nome LIKE :nome";
+        $conn = ConnectionFactory::getConnection()->prepare($sql);
+        $conn->bindValue(":nome", "%" . $nome . "%");
+        $conn->execute();
+        $result = $conn->fetchAll(PDO::FETCH_ASSOC);
+
+        $pacientes = [];
+        foreach ($result as $row) {
+            $pacientes[] = $this->listaPaciente($row);
+        }
+
+        return $pacientes;
+
+    } catch (PDOException $ex) {
+        echo "<p>Erro ao buscar paciente por nome: </p> <p> {$ex->getMessage()} </p>";
+        return [];
+    }
+}
+//Função do adrian, para atualizar exames bb
+    public function atualizarExames($registro, $exames) {
+    try {
+        $con = ConnectionFactory::getConnection();
+
+        $sql = "UPDATE paciente SET examesSolicitados = :exames WHERE registro = :registro";
+        $stmt = $con->prepare($sql);
+
+        $stmt->bindValue(':exames', $exames);
+        $stmt->bindValue(':registro', $registro, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+    } catch (PDOException $e) {
+        die("Erro ao atualizar exames: " . $e->getMessage());
+    }
+}
 } // Fecha a classe Dao
 ?>
