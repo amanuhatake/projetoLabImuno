@@ -18,7 +18,6 @@ if (isset($_GET['buscar'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Pacientes</title>
-    <!-- Link para o CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -30,10 +29,10 @@ if (isset($_GET['buscar'])) {
 <?php endif; ?>
 
 <div class="search-box">
-    <form method="GET" action="ListaPacientes.php">
+    <form method="GET" action="ListaExames.php">
         <input type="text" name="buscar" placeholder="Buscar por nome..." value="<?= isset($_GET['buscar']) ? htmlspecialchars($_GET['buscar']) : '' ?>">
         <input type="submit" value="Buscar">
-        <a href="ListaPacientes.php">Limpar</a>
+        <a href="ListaExames.php">Limpar</a>
     </form>
 </div>
 
@@ -42,15 +41,7 @@ if (isset($_GET['buscar'])) {
         <tr>
             <th>Registro</th>
             <th>Nome</th>
-            <th>Telefone</th>
-            <th>Data</th>
-            <th>Período</th>
-            <th>Nome Mãe</th>
             <th>Exames</th>
-            <th>Email</th>
-            <th>Data Nascimento</th>
-            <th>Medicamento</th>
-            <th>Nome Medicamento</th>
             <th>Ações</th>
         </tr>
     </thead>
@@ -60,22 +51,14 @@ if (isset($_GET['buscar'])) {
             <tr>
                 <td><?= htmlspecialchars($pac->getRegistro()) ?></td>
                 <td><?= htmlspecialchars($pac->getNome()) ?></td>
-                <td><?= htmlspecialchars($pac->getTelefone()) ?></td>
-                <td><?= htmlspecialchars($pac->getData()) ?></td>
-                <td><?= htmlspecialchars($pac->getPeriodo()) ?></td>
-                <td><?= htmlspecialchars($pac->getNomeMae()) ?></td>
                 <td><?= htmlspecialchars($pac->getExamesSolicitados()) ?></td>
-                <td><?= htmlspecialchars($pac->getEmail()) ?></td>
-                <td><?= htmlspecialchars($pac->getData_Nascimento()) ?></td>
-                <td><?= htmlspecialchars($pac->getMedicamento()) ?></td>
-                <td><?= htmlspecialchars($pac->getMedicamentoNome()) ?></td>
                 <td>
                     <a href="editar_exames.php?registro=<?= $pac->getRegistro() ?>">Editar Exames</a>
                 </td>
             </tr>
             <?php endforeach; ?>
         <?php else: ?>
-        <tr><td colspan="12">Nenhum paciente encontrado.</td></tr>
+        <tr><td colspan="4">Nenhum paciente encontrado.</td></tr>
         <?php endif; ?>
     </tbody>
 </table>

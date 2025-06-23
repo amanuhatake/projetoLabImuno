@@ -15,7 +15,7 @@ body {
 
 /* Título */
 h2 {
-    color: #007bff;  /* Azul consistente */
+    color: #0c4299;  /* Azul consistente */
     margin-bottom: 20px;
 }
 
@@ -35,7 +35,7 @@ h2 {
 /* Label das informações */
 .info-label {
     font-weight: bold;
-    color: #007bff;  /* Azul consistente */
+    color: #0c4299;  /* Azul consistente */
 }
 
 /* Formulário de edição */
@@ -53,7 +53,7 @@ textarea {
     width: 100%;
     padding: 10px;
     margin: 10px 0 20px;
-    border: 2px solid #007bff;  /* Azul consistente */
+    border: 2px solid #0c4299;  /* Azul consistente */
     border-radius: 5px;
     font-size: 14px;
     color: #333;
@@ -61,7 +61,7 @@ textarea {
 
 /* Botão de salvar */
 button[type="submit"] {
-    background-color: #007bff;  /* Azul consistente */
+    background-color: #0c4299;  /* Azul consistente */
     color: white;
     padding: 12px 20px;
     border: none;
