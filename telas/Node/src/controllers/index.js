@@ -5,7 +5,7 @@ const app = express();
 
 
 app.set("view engine", "ejs");
-app.set("view", "./src/views");
+app.set("views", "./src/views");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -118,7 +118,7 @@ app.put("/pacientes", async (req, res) => {
 })
 
 //API para editar um paciente
-app.put("api/pacientes", async (req, res) => {
+app.put("/api/pacientes", async (req, res) => {
      const { nome, telefone, Sexo, data, periodo, nomeMae, examesSolicitados, 
         Email, Data_Nascimento, medicamento, medicamentoNome, patologia}  = req.body;
       
@@ -152,7 +152,7 @@ app.delete("/pacientes", async (req, res) => {
 
 //API para remover paciente
 app.delete("/api/pacientes", async (req, res) => {
-    const registro = req.body;
+    const {registro} = req.body;
     const result = await deletePaciente(registro);
     if(result){
         return res.status(200).json({sucess: true});

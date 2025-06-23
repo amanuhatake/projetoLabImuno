@@ -130,7 +130,7 @@ class PacienteDao{
 
         $pacientes = [];
         foreach ($result as $row) {
-            $pacientes[] = $this->listaPaciente($row);
+            $pacientes[] = $this->listaPaciente(row: $row);
         }
 
         return $pacientes;
