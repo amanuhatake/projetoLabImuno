@@ -16,7 +16,8 @@ class PacienteDao{
             "Data_Nascimento" => $pac->getData_Nascimento(),
             "medicamento" => $pac->getMedicamento(),
             "medicamentoNome" => $pac->getMedicamentoNome(),
-            "patologia" => $pac->getPatologia()
+            "patologia" => $pac->getPatologia(),
+            "Sexo" => $pac->getSexo()
         ];
 
         $options = [
@@ -59,6 +60,7 @@ class PacienteDao{
         $paciente->setMedicamento(htmlspecialchars($row['medicamento']));
         $paciente->setMedicamentoNome(htmlspecialchars($row['medicamentoNome']));
         $paciente->setPatologia(htmlspecialchars($row['patologia']));
+        $paciente->setSexo(htmlspecialchars($row['Sexo']));
         return $paciente;
     }
 
@@ -75,7 +77,8 @@ class PacienteDao{
             "Data_Nascimento" => $pac->getData_Nascimento(),
             "medicamento" => $pac->getMedicamento(),
             "medicamentoNome" => $pac->getMedicamentoNome(),
-            "patologia" => $pac->getPatologia()
+            "patologia" => $pac->getPatologia(),
+            "Sexo" => $pac->getSexo()
         ];
 
         $options = [

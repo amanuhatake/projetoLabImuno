@@ -46,6 +46,21 @@
             </div>
 
             <div class="mb-3">
+                <label class="form-label">Sexo:</label><br />
+                <input type="radio" id="sexoMasculino" name="sexo" value="Masculino" required
+                <?= (isset($paciente) && $paciente->getSexo() === 'Masculino') ? 'checked' : '' ?>>
+                <label for="sexoMasculino">Masculino</label><br />
+
+                <input type="radio" id="sexoFeminino" name="sexo" value="Feminino" required
+                <?= (isset($paciente) && $paciente->getSexo() === 'Feminino') ? 'checked' : '' ?>>
+                <label for="sexoFeminino">Feminino</label><br />
+
+                <input type="radio" id="sexoOutro" name="sexo" value="Outro" required
+                <?= (isset($paciente) && $paciente->getSexo() === 'Outro') ? 'checked' : '' ?>>
+              <label for="sexoOutro">Outro</label>
+            </div>
+
+            <div class="mb-3">
                 <label for="telefone" class="form-label">Telefone para contato:</label>
                 <input type="tel" name="telefone" id="telefone" class="form-control" placeholder="(DDD) 99999-9999" required
                     value="<?= isset($paciente) && $paciente->getTelefone() ? $paciente->getTelefone() : '' ?>">

@@ -26,7 +26,7 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Registro</th> <th>Nome</th> <th>Telefone</th> <th>Data</th> <th>periodo</th> <th>nomeMae</th> <th>examesSolicitados</th> <th>Email</th> <th>Data_Nascimento</th><th>Ações</th>
+                            <th>Registro</th> <th>Nome</th> <th>Sexo</th> <th>Telefone</th> <th>Data</th> <th>periodo</th> <th>nomeMae</th> <th>examesSolicitados</th> <th>Email</th> <th>Data_Nascimento</th><th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>

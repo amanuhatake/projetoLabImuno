@@ -6,11 +6,16 @@
             private $telefone;
             private $email;
 
+            private $Sexo;
+
             
             public function getNome() {
                 return $this->nome;
             }
 
+            public function getSexo() {
+                return $this->Sexo;
+            }
             public function getData_Nascimento() {
                 return $this->Data_Nascimento;
             }
@@ -28,6 +33,10 @@
                 $this->nome = $nome;
             }
 
+            public function setSexo($Sexo) {
+                $this->Sexo = $Sexo;
+            }
+
             public function setData_Nascimento($Data_Nascimento) {
                 $this->Data_Nascimento = $Data_Nascimento;
             }
@@ -42,6 +51,7 @@
 
             public function __toString() {
             return "Nome Completo: {$this->nome}\n" .
+                "Sexo: {$this->Sexo}\n" .
                 "Data de Nascimento: {$this->Data_Nascimento}\n" .
                 "Telefone: {$this->telefone}\n" .
                 "Email: {$this->email}";

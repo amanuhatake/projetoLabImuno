@@ -3,8 +3,8 @@
 class PacienteDaoSql{
     public function inserir(Paciente $pac){
         try{
-            $sql = "INSERT INTO paciente (nome, telefone, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento, medicamento, medicamentoNome, patologia)
-                VALUES (:nome, :telefone,:data, :periodo, :nomeMae, :examesSolicitados, :Email, :Data_Nascimento, :medicamento, :medicamentoNome, :patologia)";
+            $sql = "INSERT INTO paciente (nome, telefone, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento, medicamento, medicamentoNome, patologia, Sexo)
+                VALUES (:nome, :telefone,:data, :periodo, :nomeMae, :examesSolicitados, :Email, :Data_Nascimento, :medicamento, :medicamentoNome, :patologia, :Sexo)";
             $conn = ConnectionFactory::getConnection()->prepare($sql);
 
             $conn->bindValue(":nome", $pac->getNome());
@@ -18,6 +18,7 @@ class PacienteDaoSql{
             $conn->bindValue(":medicamento", $pac->getMedicamento());
             $conn->bindValue(":medicamentoNome", $pac->getMedicamentoNome());
             $conn->bindValue(":patologia", $pac->getPatologia());
+            $conn->bindValue(":Sexo", $pac->getSexo());
 
             
 
@@ -60,6 +61,7 @@ class PacienteDaoSql{
         $paciente->setMedicamento($row['medicamento']);
         $paciente->setMedicamentoNome($row['medicamentoNome']);
         $paciente->setPatologia($row['patologia']);
+        $paciente->setSexo($row['Sexo']);
         
         return $paciente;
     }
@@ -80,6 +82,7 @@ class PacienteDaoSql{
             $conn->bindValue(":medicamento", $pac->getMedicamento());
             $conn->bindValue(":medicamentoNome", $pac->getMedicamentoNome());
             $conn->bindValue(":patologia", $pac->getPatologia());
+            $conn->bindValue(":Sexo", $pac->getSexo()); 
             $conn->bindValue(":registro", $pac->getRegistro()); 
             return $conn->execute(); // Executa o update
         }catch(PDOException $ex){

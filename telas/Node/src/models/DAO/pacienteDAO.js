@@ -1,36 +1,58 @@
+const pool = require('./db');
 
+async function getPacientes(){
+    const {rows} = await pool.query("SELECT * FROM pacientes ORDER BY registro");
+    const pacientes = rows;
 
-function getPacientes(){
-    const pac = [
-        {nome: "Joana", telefone: "43997354874", registro: 1223, data: "13/02/2013", periodo: "noturno", nomeMae: "Ameira", examesSolicitados: "nao", Email: "joana123@gmail.com", Data_Nascimento: "21/03/2003", medicamento: "nao", medicamentoNome:"nenehum", patologia: "nao"},
-        {nome: "Ana", telefone: "43998457105", registro: 1224, data: "13/02/2025", periodo: "manha", nomeMae: "Lucia", examesSolicitados: "nao", Email: "ana@gmail.com", Data_Nascimento: "18/04/2007", medicamento: "nao", medicamentoNome:"nenehum", patologia: "nao"},
-    ]
     return pac;
 }
 
-function insertPaciente(nome, telefone, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento, medicamento, medicamentoNome, patologia){
+async function insertPaciente(nome, telefone, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento, medicamento, medicamentoNome, patologia){
     if(nome, telefone, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento, medicamento, medicamentoNome, patologia){
-        console.log(`Paciente inserido! Nome: ${nome}, - telefone: ${telefone}, - data: ${data}, - periodo: ${periodo}, - nomeMae: ${nomeMae}, - examesSolicitados: ${examesSolicitados},
-             - Email: ${Email}, - Data_Nascimento: ${Data_Nascimento}, - medicamento: ${medicamento}, - medicamentoNome: ${medicamentoNome}, - patologia${patologia}`);
-             return true;
+        const result = await pool.query(`
+            INSERT INTO pacientes(nome, telefone, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento, medicamento, medicamentoNome, patologia)
+            values($1, $2, $3, $4, $5, $6, $7, $8,$9, $10, $11)
+            RETURNING nome, telefone, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento, medicamento, medicamentoNome, patologia`,
+            [nome, telefone, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento, medicamento, medicamentoNome, patologia]
+        );  
+       console.log("Resultado do insert:", result.rows[0]);
+       if(result.rows.length > 0){
+         return true;
+       }
+       return false;
     }
-    console.log("Falha ao inserir paciente, faltou algum dado");
+    console.error("Falha ao inserir um paciente, faltou algum dado");
     return false;
-}
+}    
 
-function editPaciente(nome, telefone, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento, medicamento, medicamentoNome, patologia){
-    if(nome, telefone, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento, medicamento, medicamentoNome, patologia){
-        console.log(`Editando paciente com id: ${registro} -> Nome: ${nome}, - telefone: ${telefone}, - data: ${data}, - periodo: ${periodo}, - nomeMae: ${nomeMae}, - examesSolicitados: ${examesSolicitados},
-             - Email: ${Email}, - Data_Nascimento: ${Data_Nascimento}, - medicamento: ${medicamento}, - medicamentoNome: ${medicamentoNome}, - patologia${patologia}`);
+async function editPaciente(registro ,nome, telefone, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento, medicamento, medicamentoNome, patologia){
+    if(registro, nome, telefone, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento, medicamento, medicamentoNome, patologia){
+        console.log("Dados: ", registro, nome, telefone, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento, medicamento, medicamentoNome, patologia);
+        const result = await pool.query(`
+            UPDATE pacientes
+            SET nome = $1, telefone = $2, data = $3, periodo = $4, nomeMae = $5, examesSolicitados = $6, Email = $7, Data_Nascimento = $8, medicamento = $9, medicamentoNome = $10, patologia = $11
+            WHERE registro = $12;
+            RETURNING  nome, telefone, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento, medicamento, medicamentoNome, patologia`,
+            [nome, telefone, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento, medicamento, medicamentoNome, patologia]
+        );
+        console.log("Resultado do edit: " + result.rows[0]);
+
+        if(result.rowa.length === 0) return false;
              return true;
     }
     console.error("Falha ao editar paciente, falhou algum dado");
     return false;
 }
 
-function deletePaciente(registro){
+async function deletePaciente(registro){
     if(registro){
-        console.log(`Removendo o paciente por ID: ${registro}`);
+        const result = await pool.query(`
+            DELETE FROM pacientes
+            WHERE registro = $1
+            RETURNIMG  registro`,
+            [registro]
+        ); 
+        if(result.rows.length === 0) return false;
         return true;
     }
     console.error("FAlha ao remover paciente, nao foi passado o registro");

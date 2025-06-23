@@ -17,6 +17,11 @@ if(isset($_POST['cadastrar'])){
     $paciente->setPeriodo($_POST['periodo']);
     $paciente->setMedicamento($_POST['medicamento']);
     $paciente->setMedicamentoNome($_POST['medicamentoNome']);
+    $paciente->setSexo
+    
+    
+    
+    ($_POST['Sexo']);
   
     $exames = isset($_POST['examesSolicitados']) ? $_POST['examesSolicitados'] : [];
     $examesString = implode(',', $exames);
@@ -52,6 +57,7 @@ if(isset($_POST['salvar_edicao'])){
     $paciente->setData_Nascimento($_POST['Data_Nascimento']);
     $paciente->setMedicamento($_POST['medicamento']);
     $paciente->setMedicamentoNome($_POST['medicamentoNome']);
+    $paciente->setSexo($_POST['Sexo']);
     $exames = isset($_POST['examesSolicitados']) ? $_POST['examesSolicitados'] : [];
 $examesString = implode(',', $exames);
 $paciente->setExamesSolicitados($examesString);
@@ -79,6 +85,7 @@ function listar(){
         <td> {$pac->getData_Nascimento()}</td>
         <td> {$pac->getMedicamento()}</td>
         <td> {$pac->getMedicamentoNome()}</td>
+        <td> {$pac->getSexo()}</td>
         
         <td> 
             <a href='listarPaciente.php?editar={$pac->getRegistro()}'> 
