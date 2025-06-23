@@ -18,5 +18,15 @@ CREATE TABLE paciente (
   PRIMARY KEY (registro)
 );
 
-
-
+--nome VARCJAR(255) NOT NULL,
+--registro INT(11) NOT NULL AUTO_INCREMENT
+--loteLugol
+--valodadeLugol
+--entrada:
+--centrifugaUtilizada
+--dataExame
+--dataPrevistaLaudo
+--tuboEnsaio
+--antiA
+--antiB
+--antiC
