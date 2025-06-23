@@ -39,7 +39,7 @@ class DadosImuno extends paciente{
 
     //toString
     public function __toString(){
-        return "Nome: {$this->nome}, Registro: {$this->registro}, Lote: {$this->lote}, Validade: {$this->validade}";
+        return super.__toString + "Nome: {$this->nome}, Registro: {$this->registro}, Lote: {$this->lote}, Validade: {$this->validade}";
     }
 
 }

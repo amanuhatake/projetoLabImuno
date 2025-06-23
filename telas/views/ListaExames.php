@@ -66,7 +66,7 @@ if (isset($_GET['buscar'])) {
                 <td><?= htmlspecialchars($pac->getNomeMae()) ?></td>
                 <td><?= htmlspecialchars($pac->getExamesSolicitados()) ?></td>
                 <td><?= htmlspecialchars($pac->getEmail()) ?></td>
-                <td><?= htmlspecialchars($pac->getDataNascimento()) ?></td>
+                <td><?= htmlspecialchars($pac->getData_Nascimento()) ?></td>
                 <td><?= htmlspecialchars($pac->getMedicamento()) ?></td>
                 <td><?= htmlspecialchars($pac->getMedicamentoNome()) ?></td>
                 <td>
