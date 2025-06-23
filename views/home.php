@@ -131,7 +131,7 @@
         <a href="cadastroPaciente.php" tabindex="0"><i class="bi bi-person-fill"></i> Paciente</a>
 
         <a href="loudoTela.php" tabindex="0"><i class="bi bi-journal-text"></i> Laudo</a>
-        <a href="LabImuno.html" tabindex="0"><i class="bi bi-file-medical-fill"></i> Exames Laboratoriais</a>
+        <a href="LabImuno.php" tabindex="0"><i class="bi bi-file-medical-fill"></i> Exames Laboratoriais</a>
         <a href="pagSelecao.php" tabindex="0"><i class="bi bi-file-earmark-medical-fill"></i> Exames Solicitados</a>
         <a href="#" tabindex="0"><i class="bi bi-question-circle"></i> Ajuda</a>
         <a href="#" tabindex="0"><i class="bi bi-box-arrow-right"></i> Sair</a>
@@ -171,7 +171,7 @@
             </div>
 
             <div class="col-lg-5 col-md-6">
-                <a href="LabImuno.html" style="text-decoration: none; color: inherit;">
+                <a href="LabImuno.php" style="text-decoration: none; color: inherit;">
                     <div class="card-option text-center p-5" tabindex="0">
                         <i class="bi bi-file-medical-fill"></i>
                         <div class="card-title">Exames Laboratoriais</div>

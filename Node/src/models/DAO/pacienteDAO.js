@@ -37,7 +37,7 @@ async function editPaciente(registro ,nome, telefone, Sexo, data, periodo, nomeM
         );
         console.log("Resultado do edit: " + result.rows[0]);
 
-        if(result.rowa.length === 0) return false;
+        if(result.rows.length === 0) return false;
              return true;
     }
     console.error("Falha ao editar paciente, falhou algum dado");
@@ -58,8 +58,6 @@ async function deletePaciente(registro){
     console.error("FAlha ao remover paciente, nao foi passado o registro");
     return false;
 }
-
-
 
 
 module.exports = { getPacientes, insertPaciente, editPaciente, deletePaciente };
