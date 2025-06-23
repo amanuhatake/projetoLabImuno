@@ -1,10 +1,10 @@
 const pool = require('./db');
 
 async function getPacientes(){
-    const {rows} = await pool.query("SELECT * FROM pacientes ORDER BY registro");
+    const {rows} = await pool.query("SELECT * FROM paciente ORDER BY registro");
     const pacientes = rows;
 
-    return pac;
+    return pacientes;
 }
 
 async function insertPaciente(nome, telefone, Sexo, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento, medicamento, medicamentoNome, patologia){
