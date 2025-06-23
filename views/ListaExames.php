@@ -41,6 +41,7 @@ if (isset($_GET['buscar'])) {
         <tr>
             <th>Registro</th>
             <th>Nome</th>
+            <th>Exames</th>
             <th>Ações</th>
         </tr>
     </thead>
@@ -50,13 +51,14 @@ if (isset($_GET['buscar'])) {
             <tr>
                 <td><?= htmlspecialchars($pac->getRegistro()) ?></td>
                 <td><?= htmlspecialchars($pac->getNome()) ?></td>
+                <td><?= htmlspecialchars($pac->getExamesSolicitados()) ?></td>
                 <td>
                     <a href="editar_exames.php?registro=<?= $pac->getRegistro() ?>">Editar Exames</a>
                 </td>
             </tr>
             <?php endforeach; ?>
         <?php else: ?>
-        <tr><td colspan="3">Nenhum paciente encontrado.</td></tr>
+        <tr><td colspan="4">Nenhum paciente encontrado.</td></tr>
         <?php endif; ?>
     </tbody>
 </table>
