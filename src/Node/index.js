@@ -13,9 +13,9 @@ app.get('/', (req, res) => {
 
 //Dados pacientes
 //Recebendo os dados de Pacientes
-app.get("/pacientes", (req, res) =>    {
+app.get("/paciente", (req, res) =>    {
 
-    res.render("listarPaciente");
+    res.render("listapaciente");
 })
 
 app.listen(3000, 'localhost', () => {

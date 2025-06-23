@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 <?php
 class PacienteDao{
 
@@ -156,6 +155,6 @@ class PacienteDao{
     }
 }
 
-} // Fecha a classe Dao
+} 
 ?>
->>>>>>> 64a5eb7a61a97bc1989ad78eb0db13bcbcf5b4eb
+
