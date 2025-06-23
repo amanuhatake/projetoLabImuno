@@ -181,7 +181,7 @@
 
             
             <div class="col-lg-5 col-md-6">
-                <a href="pagSelecao.php" style="text-decoration: none; color: inherit;">
+                <a href="ListaExames.php" style="text-decoration: none; color: inherit;">
                     <div class="card-option text-center p-5" tabindex="0">
                         <i class="bi bi-file-earmark-medical-fill"></i>
                         <div class="card-title">Exames Solicitados</div>

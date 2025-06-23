@@ -109,7 +109,7 @@ if (isset($_POST['atualizar_exames'])) {
 
     $pacienteDao->atualizarExames($registro, $examesString);
 
-    header("Location: ../view/ListaPacientes.php?msg=exames_atualizados");
+    header("Location: ../views/ListaExames.php?msg=exames_atualizados");
     exit();
 }
 //parte do Adrian, para mecanismo de busca usado na pagina de exames!

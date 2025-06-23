@@ -1,5 +1,8 @@
 
 <?php
+require_once 'ConnectionFactory.php';
+require_once __DIR__ . '/../model/Paciente.php';
+
 class PacienteDaoSql{
     public function inserir(Paciente $pac){
         try{
@@ -28,7 +31,6 @@ class PacienteDaoSql{
         }
     }
     
-
     // Executa SELECT * FROM no banco
     public function read(){
         try{
@@ -131,10 +133,10 @@ class PacienteDaoSql{
 //Função do adrian, para atualizar exames bb
     public function atualizarExames($registro, $exames) {
     try {
-        $con = ConnectionFactory::getConnection();
+        $conn = ConnectionFactory::getConnection();
 
         $sql = "UPDATE paciente SET examesSolicitados = :exames WHERE registro = :registro";
-        $stmt = $con->prepare($sql);
+        $stmt = $conn->prepare($sql);
 
         $stmt->bindValue(':exames', $exames);
         $stmt->bindValue(':registro', $registro, PDO::PARAM_INT);

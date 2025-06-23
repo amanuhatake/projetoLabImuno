@@ -1,11 +1,3 @@
-/* Reset básico para garantir que a formatação seja consistente */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Definir o fundo e a fonte geral */
 body {
     font-family: Arial, sans-serif;
     background-color: #f7f7f7;
@@ -13,33 +5,31 @@ body {
     margin: 20px;
 }
 
-/* Título */
 h2 {
-    color: #007bff;  /* Azul consistente */
+    color: #007bff;
     margin-bottom: 20px;
+    text-align: center;
 }
 
-/* Caixa de busca */
 .search-box {
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    max-width: 600px;
+    margin: 0 auto 20px auto;
 }
 
-/* Estilo para o input de busca */
+.search-box form {
+    display: flex;
+    gap: 10px;
+}
+
 input[type="text"] {
     padding: 10px;
-    width: 300px;
-    border: 2px solid #007bff;  /* Azul consistente */
+    flex: 1;
+    border: 2px solid #0c4299;
     border-radius: 5px;
-    font-size: 14px;
-    color: #333;
 }
 
-/* Botão de buscar */
 input[type="submit"] {
-    background-color: #007bff;  /* Azul consistente */
+    background-color: #0c4299;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -47,54 +37,54 @@ input[type="submit"] {
     cursor: pointer;
 }
 
-/* Botão limpar (link) */
+input[type="submit"]:hover {
+    background-color: #0c4299;
+}
+
 a {
-    text-decoration: none;
-    color: #007bff;  /* Azul consistente */
+    color: #0c4299;
     font-weight: bold;
-}
-
-/* Tabela */
-table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 20px;
-    background-color: white;
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-/* Cabeçalho da tabela */
-th {
-    background-color: #007bff;  /* Azul consistente */
-    color: white;
-    padding: 10px;
-    text-align: left;
-}
-
-/* Linhas da tabela */
-td {
-    padding: 8px 10px;
-    border-bottom: 1px solid #ddd;
-}
-
-/* Estilo para o botão de editar */
-a {
-    color: #007bff;  /* Azul consistente */
     text-decoration: none;
-    font-weight: bold;
 }
 
 a:hover {
     text-decoration: underline;
 }
 
-/* Estilo para mensagens de sucesso ou erro */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+th {
+    background-color: #0c4299;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+    background-color: #f2f2f2;
+}
+
 .message {
     background-color: #d4edda;
     color: #155724;
     border: 1px solid #c3e6cb;
     padding: 15px;
-    margin-bottom: 20px;
+    margin: 0 auto 20px auto;
     border-radius: 5px;
+    max-width: 800px;
+    text-align: center;
 }
