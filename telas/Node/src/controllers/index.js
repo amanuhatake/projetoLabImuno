@@ -40,18 +40,18 @@ app.get("/newpaciente", (req, res) => {
 })
 
 app.post("/pacientes", async (req, res) => {
-    const {registro,nome, telefone, data, periodo, nomeMae, examesSolicitados, 
+    const {registro,nome, telefone,Sexo, data, periodo, nomeMae, examesSolicitados, 
         Email, Data_Nascimento, medicamento, medicamentoNome, patologia} = req.body;
 
         if(registro){
-            const result = await editPaciente(registro, nome, telefone, data, periodo, nomeMae, examesSolicitados, 
+            const result = await editPaciente(registro, nome, telefone,Sexo, data, periodo, nomeMae, examesSolicitados, 
             Email, Data_Nascimento, medicamento, medicamentoNome, patologia);
             if(result){
                  return res.redirect("/pacientes");
             }
             return res.status(404).send("Não foi possivel editar o paciente");
         }else{
-            const result = await insertPaciente(nome, telefone, data, periodo, nomeMae, examesSolicitados, 
+            const result = await insertPaciente(nome, telefone, Sexo,data, periodo, nomeMae, examesSolicitados, 
             Email, Data_Nascimento, medicamento, medicamentoNome, patologia);
             if(result){
               return res.redirect("/pacientes");
@@ -79,10 +79,10 @@ app.post("/pacientes", async (req, res) => {
 
 //Inserindo paciente via API
 app.post("/api/pacientes", async (req, res) => {
-    const { nome, telefone, data, periodo, nomeMae, examesSolicitados, 
+    const { nome, telefone,Sexo ,data, periodo, nomeMae, examesSolicitados, 
     Email, Data_Nascimento, medicamento, medicamentoNome, patologia}  = req.body;
 
-    const result = await insertPaciente(nome, telefone, data, periodo, nomeMae, examesSolicitados, 
+    const result = await insertPaciente(nome, telefone,Sexo, data, periodo, nomeMae, examesSolicitados, 
         Email, Data_Nascimento, medicamento, medicamentoNome, patologia);
 
         if(result){
@@ -104,10 +104,10 @@ app.get("/editcliente/:registropaciente", async (req, res) => {
 
 
 app.put("/pacientes", async (req, res) => {
-    const { nome, telefone, data, periodo, nomeMae, examesSolicitados, 
+    const { nome, telefone,Sexo, data, periodo, nomeMae, examesSolicitados, 
         Email, Data_Nascimento, medicamento, medicamentoNome, patologia}  = req.body;
 
-    const result = await editPaciente( nome, telefone, data, periodo, nomeMae, examesSolicitados, 
+    const result = await editPaciente( nome, telefone,Sexo, data, periodo, nomeMae, examesSolicitados, 
         Email, Data_Nascimento, medicamento, medicamentoNome, patologia);
 
         if(result){
@@ -119,10 +119,10 @@ app.put("/pacientes", async (req, res) => {
 
 //API para editar um paciente
 app.put("api/pacientes", async (req, res) => {
-     const { nome, telefone, data, periodo, nomeMae, examesSolicitados, 
+     const { nome, telefone, Sexo, data, periodo, nomeMae, examesSolicitados, 
         Email, Data_Nascimento, medicamento, medicamentoNome, patologia}  = req.body;
       
-      const result = await editPaciente( nome, telefone, data, periodo, nomeMae, examesSolicitados, 
+      const result = await editPaciente( nome, telefone,Sexo, data, periodo, nomeMae, examesSolicitados, 
         Email, Data_Nascimento, medicamento, medicamentoNome, patologia);
         
      if(result){
