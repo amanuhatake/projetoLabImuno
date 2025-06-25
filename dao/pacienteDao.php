@@ -42,7 +42,7 @@ class PacienteDao{
     $pacList = array();
     $lista = json_decode($result, true);
 
-if (isset($lista['success']) && $lista['success'] && isset($lista['pacientes'])) {
+if (isset($lista['sucess']) && $lista['success'] && isset($lista['pacientes'])) {
     foreach ($lista['pacientes'] as $pac):
         $pacList[] = $this->listaPaciente($pac);
     endforeach;

@@ -49,13 +49,13 @@ async function deletePaciente(registro){
         const result = await pool.query(`
             DELETE FROM pacientes
             WHERE registro = $1
-            RETURNIMG  registro`,
+            RETURNING  registro`,
             [registro]
         ); 
         if(result.rows.length === 0) return false;
         return true;
     }
-    console.error("FAlha ao remover paciente, nao foi passado o registro");
+    console.error("Falha ao remover paciente, nao foi passado o registro");
     return false;
 }
 

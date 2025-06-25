@@ -46,7 +46,7 @@ if(isset($_POST['salvar_edicao'])){
     $paciente = new Paciente();
     $paciente->setRegistro($_POST['registro']); // O ID é crucial para o método UPDATE do DAO
     $paciente->setNome($_POST['nome']);
-     $sexo = isset($_POST['Sexo']) ? $_POST['Sexo'] : null;
+    $sexo = isset($_POST['Sexo']) ? $_POST['Sexo'] : null;
     $paciente->setTelefone($_POST['telefone']);
     $paciente->setData($_POST['data']);
     $paciente->setPeriodo($_POST['periodo']);
