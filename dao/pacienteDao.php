@@ -3,10 +3,11 @@
 class PacienteDao{
 
     public function inserir(Paciente $pac){
-        $url = "http://localhost:3000/pacientes";
+        $url = "http://localhost:3000/api/pacientes";
         $dados = [
             //"registro" => $pac->getId(),        
             "nome" => $pac->getNome(),
+            "Sexo" => $pac->getSexo(),
             "telefone" => $pac->getTelefone(),
             "data" => $pac->getData(),
             "periodo" => $pac->getPeriodo(),
@@ -17,7 +18,7 @@ class PacienteDao{
             "medicamento" => $pac->getMedicamento(),
             "medicamentoNome" => $pac->getMedicamentoNome(),
             "patologia" => $pac->getPatologia(),
-            "Sexo" => $pac->getSexo()
+            
         ];
 
         $options = [
@@ -34,16 +35,21 @@ class PacienteDao{
     }
 
     // Executa SELECT * FROM no banco
-    public function read(){
-        $url = "http://localhost:3000/pacientes";
-        $result = file_get_contents($url);
-        $pacList = array();
-        $lista = json_decode($result, true);
-        foreach ($lista as $pac):
-            $pacList[] = $this->listaPaciente($pac);
-        endforeach;
-        return $pacList;
-    }
+ public function read(){
+    $url = "http://localhost:3000/api/pacientes"; // URL da API REST
+    $result = file_get_contents($url);
+
+    $pacList = array();
+    $lista = json_decode($result, true);
+
+if (isset($lista['success']) && $lista['success'] && isset($lista['pacientes'])) {
+    foreach ($lista['pacientes'] as $pac):
+        $pacList[] = $this->listaPaciente($pac);
+    endforeach;
+}
+    return $pacList;
+}
+
 
     // Converter uma linha em obj
     public function listaPaciente($row){

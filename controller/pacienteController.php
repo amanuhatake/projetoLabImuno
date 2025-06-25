@@ -9,6 +9,7 @@ $pacienteDao = new PacienteDaoSQL();
 if(isset($_POST['cadastrar'])){
     $paciente = new Paciente();
     $paciente->setNome($_POST['nome']);
+    $sexo = isset($_POST['Sexo']) ? $_POST['Sexo'] : null;
     $paciente->setTelefone($_POST['telefone']);
     $paciente->setData($_POST['data']);
     $paciente->setNomeMae($_POST['nomeMae']);
@@ -17,14 +18,10 @@ if(isset($_POST['cadastrar'])){
     $paciente->setPeriodo($_POST['periodo']);
     $paciente->setMedicamento($_POST['medicamento']);
     $paciente->setMedicamentoNome($_POST['medicamentoNome']);
-    $paciente->setSexo
-    
-    
-    
-    ($_POST['Sexo']);
-  
+    $paciente->setSexo($sexo);
     $exames = isset($_POST['examesSolicitados']) ? $_POST['examesSolicitados'] : [];
     $examesString = implode(',', $exames);
+
     $paciente->setExamesSolicitados($examesString);
 
 
@@ -49,6 +46,7 @@ if(isset($_POST['salvar_edicao'])){
     $paciente = new Paciente();
     $paciente->setRegistro($_POST['registro']); // O ID é crucial para o método UPDATE do DAO
     $paciente->setNome($_POST['nome']);
+     $sexo = isset($_POST['Sexo']) ? $_POST['Sexo'] : null;
     $paciente->setTelefone($_POST['telefone']);
     $paciente->setData($_POST['data']);
     $paciente->setPeriodo($_POST['periodo']);
@@ -57,10 +55,10 @@ if(isset($_POST['salvar_edicao'])){
     $paciente->setData_Nascimento($_POST['Data_Nascimento']);
     $paciente->setMedicamento($_POST['medicamento']);
     $paciente->setMedicamentoNome($_POST['medicamentoNome']);
-    $paciente->setSexo($_POST['Sexo']);
+    $paciente->setSexo($sexo);
     $exames = isset($_POST['examesSolicitados']) ? $_POST['examesSolicitados'] : [];
-$examesString = implode(',', $exames);
-$paciente->setExamesSolicitados($examesString);
+    $examesString = implode(',', $exames);
+    $paciente->setExamesSolicitados($examesString);
 
     echo "Controller linha 36";
     $pacienteDao->editar($paciente); // Chama o método editar no DAO
@@ -76,6 +74,7 @@ function listar(){
         echo "<tr>
         <td> {$pac->getRegistro()} </td>
         <td> {$pac->getNome()}</td>
+        <td> {$pac->getSexo()}</td>
         <td> {$pac->getTelefone()}</td>
         <td> {$pac->getData()}</td>
         <td> {$pac->getPeriodo()}</td>
@@ -85,7 +84,7 @@ function listar(){
         <td> {$pac->getData_Nascimento()}</td>
         <td> {$pac->getMedicamento()}</td>
         <td> {$pac->getMedicamentoNome()}</td>
-        <td> {$pac->getSexo()}</td>
+      
         
         <td> 
             <a href='listarPaciente.php?editar={$pac->getRegistro()}'> 

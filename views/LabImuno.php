@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+<!--CALVIN-->
 <head>
   <meta charset="UTF-8">
   <title>Laboratório de Imunologia</title>
@@ -19,6 +20,9 @@
     <h1 class="text-center mb-4 text-leac">Laboratório de Imunologia</h1>
 
     <form action="../controller/labImunoController.php" method="post">
+      <!-- INPUT ESCONDIDO PARA INFORMAR A AÇÃO -->
+      <input type="hidden" name="acao" value="inserir">
+
       <div class="row g-3">
         <div class="col-md-6">
           <label class="form-label">Nome do Paciente:</label>
@@ -26,7 +30,8 @@
         </div>
         <div class="col-md-6">
           <label class="form-label">Número de registro:</label>
-          <input type="text" class="form-control" name="registro">
+          <!-- Corrigido o name para "numero_registro" -->
+          <input type="text" class="form-control" name="numero_registro">
         </div>
         <div class="col-md-6">
           <label class="form-label">Lote de lugol:</label>
@@ -46,7 +51,7 @@
         </div>
         <div class="col-md-6">
           <label class="form-label">Data e hora de realização do exame:</label>
-          <input type="datetime-local" class="form-control" name="data_realizacao">
+          <input type="datetime-local" class="form-control" name="data_exame">
         </div>
         <div class="col-md-6">
           <label class="form-label">Data prevista para entrega do laudo:</label>

@@ -47,15 +47,15 @@
 
             <div class="mb-3">
                 <label class="form-label">Sexo:</label><br />
-                <input type="radio" id="sexoMasculino" name="sexo" value="Masculino" required
+                <input type="radio" id="SexoMasculino" name="Sexo" value="Masculino" required
                 <?= (isset($paciente) && $paciente->getSexo() === 'Masculino') ? 'checked' : '' ?>>
                 <label for="sexoMasculino">Masculino</label><br />
 
-                <input type="radio" id="sexoFeminino" name="sexo" value="Feminino" required
+                <input type="radio" id="sexoFeminino" name="Sexo" value="Feminino" required
                 <?= (isset($paciente) && $paciente->getSexo() === 'Feminino') ? 'checked' : '' ?>>
                 <label for="sexoFeminino">Feminino</label><br />
 
-                <input type="radio" id="sexoOutro" name="sexo" value="Outro" required
+                <input type="radio" id="sexoOutro" name="Sexo" value="Outro" required
                 <?= (isset($paciente) && $paciente->getSexo() === 'Outro') ? 'checked' : '' ?>>
               <label for="sexoOutro">Outro</label>
             </div>
