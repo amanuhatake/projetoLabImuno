@@ -132,7 +132,7 @@
 
         <a href="loudoTela.php" tabindex="0"><i class="bi bi-journal-text"></i> Laudo</a>
         <a href="LabImuno.php" tabindex="0"><i class="bi bi-file-medical-fill"></i> Exames Laboratoriais</a>
-        <a href="pagSelecao.php" tabindex="0"><i class="bi bi-file-earmark-medical-fill"></i> Exames Solicitados</a>
+        <a href="ListaExames.php" tabindex="0"><i class="bi bi-file-earmark-medical-fill"></i> Exames Solicitados</a>
         <a href="#" tabindex="0"><i class="bi bi-question-circle"></i> Ajuda</a>
         <a href="#" tabindex="0"><i class="bi bi-box-arrow-right"></i> Sair</a>
     </div>
