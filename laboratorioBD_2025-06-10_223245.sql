@@ -21,6 +21,7 @@ CREATE TABLE paciente (
 );
 
 
+
 --nome VARCJAR(255) NOT NULL,
 --registro INT(11) NOT NULL AUTO_INCREMENT
 --loteLugol
