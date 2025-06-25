@@ -20,6 +20,8 @@ CREATE TABLE paciente (
   PRIMARY KEY (registro)
 );
 
+
+
 --nome VARCJAR(255) NOT NULL,
 --registro INT(11) NOT NULL AUTO_INCREMENT
 --loteLugol
@@ -32,3 +34,19 @@ CREATE TABLE paciente (
 --antiA
 --antiB
 --antiC
+
+-- Tabela exames (catálogo de exames)
+CREATE TABLE exames (
+    id_exame INT PRIMARY KEY AUTO_INCREMENT,
+    nome_exame VARCHAR(200)
+);
+
+-- Tabela exames_solicitados (tabela de junção com data)
+CREATE TABLE exames_solicitados (
+    id_exame_solicitado INT PRIMARY KEY AUTO_INCREMENT,
+    id_paciente INT,
+    id_exame INT,
+    data_registro DATE,
+    FOREIGN KEY (id_exame) REFERENCES exames(id_exame)
+);
+
