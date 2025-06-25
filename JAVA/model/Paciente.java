@@ -1,5 +1,5 @@
 
-public class Paciente  extends pessoa implements Cadastro{
+public class Paciente  extends Pessoa implements Cadastro{
 	 private int registro;
 	 private String data;
 	 private String periodo;
@@ -79,8 +79,6 @@ public class Paciente  extends pessoa implements Cadastro{
 	public String toString() {
 		return super.toString() + "Paciente: Registro:" + registro + "Data:" + data + "Periodo:" + periodo + "Nome mãe:" + nomeMae
 				+ "Exames Solicitados:" + examesSolicitados + "\n";
-	}
-	 
-	 
+	} 
 
 }

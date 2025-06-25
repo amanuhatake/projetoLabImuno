@@ -1,14 +1,14 @@
-public abstract class pessoa {
+public abstract class Pessoa {
 	  private String nomeCompleto;
 	  private String dataNascimento;
 	  private String telefone;
 	  private String email;
 	  
-	  public pessoa() {
+	  public Pessoa() {
 		  
 	  }
 	  
-	  public pessoa(String nomeCompleto, String dataNascimento, String telefone, String email) {
+	  public Pessoa(String nomeCompleto, String dataNascimento, String telefone, String email) {
 		  this.nomeCompleto = nomeCompleto;
 		  this.dataNascimento = dataNascimento;
 		  this.telefone = telefone;
