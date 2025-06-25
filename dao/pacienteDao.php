@@ -7,6 +7,7 @@ class PacienteDao{
         $dados = [
             //"registro" => $pac->getId(),        
             "nome" => $pac->getNome(),
+            "Sexo" => $pac->getSexo(),
             "telefone" => $pac->getTelefone(),
             "data" => $pac->getData(),
             "periodo" => $pac->getPeriodo(),
@@ -17,7 +18,7 @@ class PacienteDao{
             "medicamento" => $pac->getMedicamento(),
             "medicamentoNome" => $pac->getMedicamentoNome(),
             "patologia" => $pac->getPatologia(),
-            "Sexo" => $pac->getSexo()
+            
         ];
 
         $options = [

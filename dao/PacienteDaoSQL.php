@@ -6,11 +6,12 @@ require_once __DIR__ . '/../model/Paciente.php';
 class PacienteDaoSql{
     public function inserir(Paciente $pac){
         try{
-            $sql = "INSERT INTO paciente (nome, telefone, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento, medicamento, medicamentoNome, patologia, Sexo)
-                VALUES (:nome, :telefone,:data, :periodo, :nomeMae, :examesSolicitados, :Email, :Data_Nascimento, :medicamento, :medicamentoNome, :patologia, :Sexo)";
+            $sql = "INSERT INTO paciente (nome, Sexo, telefone, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento, medicamento, medicamentoNome, patologia)
+                VALUES (:nome, :Sexo, :telefone,:data, :periodo, :nomeMae, :examesSolicitados, :Email, :Data_Nascimento, :medicamento, :medicamentoNome, :patologia)";
             $conn = ConnectionFactory::getConnection()->prepare($sql);
 
             $conn->bindValue(":nome", $pac->getNome());
+            $conn->bindValue(":Sexo", $pac->getSexo());
             $conn->bindValue(":telefone", $pac->getTelefone());
             $conn->bindValue(":data", $pac->getData());
             $conn->bindValue(":periodo", $pac->getPeriodo());
@@ -21,11 +22,9 @@ class PacienteDaoSql{
             $conn->bindValue(":medicamento", $pac->getMedicamento());
             $conn->bindValue(":medicamentoNome", $pac->getMedicamentoNome());
             $conn->bindValue(":patologia", $pac->getPatologia());
-            $conn->bindValue(":Sexo", $pac->getSexo());
-
-            
-
-            return $conn->execute(); # executa o insert
+         
+  
+          return $conn->execute(); # executa o insert
         }catch(PDOException $ex){
             echo "<p> Erro </p> <p> $ex </p>";
         }
@@ -53,6 +52,7 @@ class PacienteDaoSql{
         $paciente = new Paciente();
         $paciente->setRegistro($row['registro']);
         $paciente->setNome($row['nome']);
+        $paciente->setSexo($row['Sexo']);
         $paciente->setTelefone($row['telefone']);
         $paciente->setData($row['data']);
         $paciente->setPeriodo($row['periodo']);
@@ -63,7 +63,7 @@ class PacienteDaoSql{
         $paciente->setMedicamento($row['medicamento']);
         $paciente->setMedicamentoNome($row['medicamentoNome']);
         $paciente->setPatologia($row['patologia']);
-        $paciente->setSexo($row['Sexo']);
+
         
         return $paciente;
     }
@@ -71,9 +71,10 @@ class PacienteDaoSql{
     public function editar(Paciente $pac){
         try{
             $sql = "UPDATE paciente SET 
-                nome = :nome, telefone = :telefone, data = :data, periodo = :periodo, nomeMae = :nomeMae, examesSolicitados = :examesSolicitados, Email = :Email, Data_Nascimento = :Data_Nascimento, medicamento = :medicamento, medicamentoNome = :medicamentoNome, patologia = :patologia WHERE registro = :registro";
+                nome = :nome, Sexo = :Sexo, telefone = :telefone, data = :data, periodo = :periodo, nomeMae = :nomeMae, examesSolicitados = :examesSolicitados, Email = :Email, Data_Nascimento = :Data_Nascimento, medicamento = :medicamento, medicamentoNome = :medicamentoNome, patologia = :patologia WHERE registro = :registro";
             $conn = ConnectionFactory::getConnection()->prepare($sql);
             $conn->bindValue(":nome", $pac->getNome());
+            $conn->bindValue(":Sexo", $pac->getSexo());
             $conn->bindValue(":telefone", $pac->getTelefone());
             $conn->bindValue(":data", $pac->getData());
             $conn->bindValue(":periodo", $pac->getPeriodo());
@@ -84,7 +85,6 @@ class PacienteDaoSql{
             $conn->bindValue(":medicamento", $pac->getMedicamento());
             $conn->bindValue(":medicamentoNome", $pac->getMedicamentoNome());
             $conn->bindValue(":patologia", $pac->getPatologia());
-            $conn->bindValue(":Sexo", $pac->getSexo()); 
             $conn->bindValue(":registro", $pac->getRegistro()); 
             return $conn->execute(); // Executa o update
         }catch(PDOException $ex){
