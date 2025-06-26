@@ -143,7 +143,7 @@
 
         <div class="row g-4 justify-content-center">
             <div class="col-lg-5 col-md-6">
-                <a href="COLOCA O LINK AQUI CAIO" style="text-decoration: none; color: inherit;">
+                <a href="ContorleUsuarios.html" style="text-decoration: none; color: inherit;">
                     <div class="card-option text-center p-5" tabindex="0">
                         <i class="bi bi-gear-fill"></i>
                         <div class="card-title">ADM</div>

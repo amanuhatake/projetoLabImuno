@@ -130,28 +130,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const medSim = document.getElementById('medicamentoSim');
-        const medNao = document.getElementById('medicamentoNao');
-        const medNome = document.getElementById('medicamentoNome');
 
-        function toggleMedicamentoNome() {
-            if (medSim.checked) {
-                medNome.style.display = 'block';
-                medNome.setAttribute('required', 'required');
-            } else {
-                medNome.style.display = 'none';
-                medNome.removeAttribute('required');
-                medNome.value = '';
-            }
-        }
-
-        toggleMedicamentoNome();
-        medSim.addEventListener('change', toggleMedicamentoNome);
-        medNao.addEventListener('change', toggleMedicamentoNome);
-    });
-</script>
 
 
 <script>

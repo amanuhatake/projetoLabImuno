@@ -1,26 +1,24 @@
 import java.util.Scanner;
-import controller.PacienteController;
-import model.Paciente;
+
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        PacienteController controller = new PacienteController();
-
         int opcao;
 
         do {
-            System.out.println("1 - Cadastrar paciente");
-            System.out.println("2 - Listar todos os pacientes");
-            System.out.println("3 - Buscar paciente por registro");
-            System.out.println("0 - Sair");
-
             System.out.print("Escolha: ");
+            System.out.println("1 - Cadastrar paciente");
+            System.out.println("0 - Sair");
             opcao = scanner.nextInt();
             scanner.nextLine(); 
 
             switch (opcao) {
                 case 1:
+                    System.out.print("Informe o número de registro: ");
+                    int registro = scanner.nextInt();
+                    scanner.nextLine(); // limpa o buffer
+
                     System.out.print("Informe o nome");
                     String nome = scanner.nextLine();
 
@@ -45,34 +43,17 @@ public class Main {
                     System.out.print("Exames solicitados: ");
                     String exames = scanner.nextLine();
 
-                    controller.cadastrarPaciente(
-                        nome, dataNascimento, telefone, email,
-                        dataConsulta, periodo, nomeMae, exames
-                    );
-                    break;
-
-                case 2:
-                    controller.listarPacientes();
-                    break;
-
-                case 3:
-                    System.out.print("Digite o número de registro: ");
-                    int registro = scanner.nextInt();
-                    scanner.nextLine(); 
-                    Paciente p = controller.buscarPorRegistro(registro);
-                    if (p != null) {
-                        p.exibir();
-                    } else {
-                        System.out.println("Paciente não encontrado.");
-                    }
+                    Paciente paciente = new Paciente(registro, nome, dataNascimento, telefone, email, dataConsulta, periodo, nomeMae, exames);
+                    paciente.salvar();
+                    System.out.println("Paciente cadastrado!");
                     break;
 
                 case 0:
-                    System.out.println("Encerrando o programa...");
+                    System.out.println("Saindo do menu");
                     break;
 
                 default:
-                    System.out.println("Opção inválida.");
+                    System.out.println("Opção inválida");
             }
 
         } while (opcao != 0);
