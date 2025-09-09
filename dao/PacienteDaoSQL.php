@@ -6,8 +6,8 @@ require_once __DIR__ . '/../model/Paciente.php';
 class PacienteDaoSql{
     public function inserir(Paciente $pac){
         try{
-            $sql = "INSERT INTO paciente (nome, Sexo, telefone, data, periodo, nomeMae, examesSolicitados, Email, Data_Nascimento, medicamento, medicamentoNome, patologia)
-                VALUES (:nome, :Sexo, :telefone,:data, :periodo, :nomeMae, :examesSolicitados, :Email, :Data_Nascimento, :medicamento, :medicamentoNome, :patologia)";
+            $sql = "INSERT INTO paciente (nome, Sexo, telefone, data, periodo, nomeMae, Email, Data_Nascimento,)
+                VALUES (:nome, :Sexo, :telefone,:data, :periodo, :nomeMae, :Email, :Data_Nascimento)";
             $conn = ConnectionFactory::getConnection()->prepare($sql);
 
             $conn->bindValue(":nome", $pac->getNome());
@@ -16,12 +16,9 @@ class PacienteDaoSql{
             $conn->bindValue(":data", $pac->getData());
             $conn->bindValue(":periodo", $pac->getPeriodo());
             $conn->bindValue(":nomeMae", $pac->getNomeMae());
-            $conn->bindValue(":examesSolicitados", $pac->getExamesSolicitados());
             $conn->bindValue(":Email", $pac->getEmail());
             $conn->bindValue(":Data_Nascimento", $pac->getData_Nascimento());
-            $conn->bindValue(":medicamento", $pac->getMedicamento());
-            $conn->bindValue(":medicamentoNome", $pac->getMedicamentoNome());
-            $conn->bindValue(":patologia", $pac->getPatologia());
+
          
   
           return $conn->execute(); # executa o insert
@@ -57,34 +54,24 @@ class PacienteDaoSql{
         $paciente->setData($row['data']);
         $paciente->setPeriodo($row['periodo']);
         $paciente->setNomeMae($row['nomeMae']);
-        $paciente->setExamesSolicitados($row['examesSolicitados']);
         $paciente->setEmail($row['Email']);
         $paciente->setData_Nascimento($row['Data_Nascimento']);
-        $paciente->setMedicamento($row['medicamento']);
-        $paciente->setMedicamentoNome($row['medicamentoNome']);
-        $paciente->setPatologia($row['patologia']);
 
-        
         return $paciente;
     }
 
     public function editar(Paciente $pac){
         try{
             $sql = "UPDATE paciente SET 
-                nome = :nome, Sexo = :Sexo, telefone = :telefone, data = :data, periodo = :periodo, nomeMae = :nomeMae, examesSolicitados = :examesSolicitados, Email = :Email, Data_Nascimento = :Data_Nascimento, medicamento = :medicamento, medicamentoNome = :medicamentoNome, patologia = :patologia WHERE registro = :registro";
+                nome = :nome, Sexo = :Sexo, telefone = :telefone, data = :data, periodo = :periodo, nomeMae = :nomeMae, Email = :Email, Data_Nascimento = :Data_Nascimento, WHERE registro = :registro";
             $conn = ConnectionFactory::getConnection()->prepare($sql);
             $conn->bindValue(":nome", $pac->getNome());
             $conn->bindValue(":Sexo", $pac->getSexo());
             $conn->bindValue(":telefone", $pac->getTelefone());
             $conn->bindValue(":data", $pac->getData());
-            $conn->bindValue(":periodo", $pac->getPeriodo());
             $conn->bindValue(":nomeMae", $pac->getNomeMae());
-            $conn->bindValue(":examesSolicitados", $pac->getExamesSolicitados());
             $conn->bindValue(":Email", $pac->getEmail());
             $conn->bindValue(":Data_Nascimento", $pac->getData_Nascimento());
-            $conn->bindValue(":medicamento", $pac->getMedicamento());
-            $conn->bindValue(":medicamentoNome", $pac->getMedicamentoNome());
-            $conn->bindValue(":patologia", $pac->getPatologia());
             $conn->bindValue(":registro", $pac->getRegistro()); 
             return $conn->execute(); // Executa o update
         }catch(PDOException $ex){

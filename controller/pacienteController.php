@@ -16,10 +16,7 @@ if(isset($_POST['cadastrar'])){
     $paciente->setEmail($_POST['email']);
     $paciente->setData_Nascimento($_POST['Data_Nascimento']);
     $paciente->setPeriodo($_POST['periodo']);
-    $paciente->setMedicamento($_POST['medicamento']);
-    $paciente->setMedicamentoNome($_POST['medicamentoNome']);
     $paciente->setSexo($sexo);
-    $exames = isset($_POST['examesSolicitados']) ? $_POST['examesSolicitados'] : [];
     $examesString = implode(',', $exames);
 
     $paciente->setExamesSolicitados($examesString);
@@ -49,16 +46,10 @@ if(isset($_POST['salvar_edicao'])){
      $sexo = isset($_POST['Sexo']) ? $_POST['Sexo'] : null;
     $paciente->setTelefone($_POST['telefone']);
     $paciente->setData($_POST['data']);
-    $paciente->setPeriodo($_POST['periodo']);
     $paciente->setNomeMae($_POST['nomeMae']);
     $paciente->setEmail($_POST['email']);
     $paciente->setData_Nascimento($_POST['Data_Nascimento']);
-    $paciente->setMedicamento($_POST['medicamento']);
-    $paciente->setMedicamentoNome($_POST['medicamentoNome']);
     $paciente->setSexo($sexo);
-    $exames = isset($_POST['examesSolicitados']) ? $_POST['examesSolicitados'] : [];
-    $examesString = implode(',', $exames);
-    $paciente->setExamesSolicitados($examesString);
 
     echo "Controller linha 36";
     $pacienteDao->editar($paciente); // Chama o método editar no DAO
@@ -79,12 +70,8 @@ function listar(){
         <td> {$pac->getData()}</td>
         <td> {$pac->getPeriodo()}</td>
         <td> {$pac->getNomeMae()}</td>
-        <td> {$pac->getExamesSolicitados()}</td>
         <td> {$pac->getEmail()}</td>
         <td> {$pac->getData_Nascimento()}</td>
-        <td> {$pac->getMedicamento()}</td>
-        <td> {$pac->getMedicamentoNome()}</td>
-      
         
         <td> 
             <a href='listarPaciente.php?editar={$pac->getRegistro()}'> 
