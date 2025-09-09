@@ -3,7 +3,7 @@ CREATE DATABASE IF NOT EXISTS labimuno
 CHARACTER SET utf8mb4 
 COLLATE utf8mb4_unicode_ci;
 
-USE labimuno;
+USE exames;
 
 -- Criar tabela de usuários
 CREATE TABLE IF NOT EXISTS usuarios (
