@@ -20,7 +20,7 @@
     <h1 class="text-center mb-4 text-leac">Laboratório de Imunologia</h1>
 
     <form action="../controller/labImunoController.php" method="post">
-      <!-- INPUT ESCONDIDO PARA INFORMAR A AÇÃO -->
+      
       <input type="hidden" name="acao" value="inserir">
 
       <div class="row g-3">

@@ -1,31 +1,24 @@
 <?php
-// Ativa exibição de erros para debug (remova em produção)
+//Feito pelo chat, pois ao salvar as informações, ele estava ficando preso aqui, e não estava indo para a listaLab
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Inclui a classe DAO (confira o caminho se necessário)
 require_once '../dao/labImunoDAO.php';
 
-// Verifica se a requisição é POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // Verifica se o campo 'acao' existe no POST
     if (isset($_POST['acao'])) {
         $acao = $_POST['acao'];
 
-        // Instancia o DAO (com letra maiúscula!)
         try {
             $dao = new LabImunoDAO();
         } catch (Exception $e) {
-            // Se falhar a conexão ou instanciamento, mostra erro e para
             echo "Erro ao conectar com o banco: " . $e->getMessage();
             exit();
         }
 
-        // Se for para inserir exame
         if ($acao === 'inserir') {
-            // Monta o array de dados vindos do formulário
             $dados = [
                 'nome_paciente'      => $_POST['nome_paciente'] ?? '',
                 'numero_registro'    => $_POST['numero_registro'] ?? '',
@@ -47,7 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 'agua_validade'      => $_POST['agua_validade'] ?? ''
             ];
 
-            // Tenta inserir e captura erro se der
             try {
                 $resultado = $dao->inserirExame($dados);
             } catch (Exception $e) {
@@ -55,7 +47,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 exit();
             }
 
-            // Se inseriu com sucesso, redireciona para a lista
             if ($resultado) {
                 header("Location: ../views/listaLabImuno.php");
                 exit();
@@ -63,7 +54,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "Erro ao inserir o exame.";
             }
 
-        // Se for para atualizar exame
         } elseif ($acao === 'atualizar') {
 
             $id = $_POST['id'] ?? null;
@@ -72,7 +62,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 exit();
             }
 
-            // Monta o array com os dados do formulário
             $dados = [
                 'nome_paciente'      => $_POST['nome_paciente'] ?? '',
                 'numero_registro'    => $_POST['numero_registro'] ?? '',
@@ -94,7 +83,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 'agua_validade'      => $_POST['agua_validade'] ?? ''
             ];
 
-            // Tenta atualizar
             try {
                 $resultado = $dao->atualizarExame($id, $dados);
             } catch (Exception $e) {
@@ -109,6 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "Erro ao atualizar o exame.";
             }
 
+           
         } else {
             echo "Ação desconhecida: $acao";
         }

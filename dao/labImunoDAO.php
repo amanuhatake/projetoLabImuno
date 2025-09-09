@@ -10,7 +10,6 @@ class LabImunoDAO {
         }
     }
 
-    // Inserir um novo exame
     public function inserirExame($dados) {
         $sql = "INSERT INTO exames (
             nome_paciente, numero_registro, lote_lugol, validade_lugol,
@@ -54,7 +53,6 @@ class LabImunoDAO {
         return $resultado;
     }
 
-    // Buscar exame pelo ID
     public function buscarExamePorId($id) {
         $sql = "SELECT * FROM exames WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
@@ -65,10 +63,9 @@ class LabImunoDAO {
         $stmt->execute();
         $resultado = $stmt->get_result();
 
-        return $resultado->fetch_assoc(); // retorna um array associativo com os dados do exame
+        return $resultado->fetch_assoc(); 
     }
 
-    // Atualizar exame existente
     public function atualizarExame($id, $dados) {
         $sql = "UPDATE exames SET 
             nome_paciente=?, numero_registro=?, lote_lugol=?, validade_lugol=?,
