@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Sistema de Gestão</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Bootstrap + Icons + Google Fonts -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top shadow">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand" href="#"><i class="bi bi-hospital me-2"></i> Sistema de Gestão</a>
+            <div class="d-flex ms-auto align-items-center">
+                <span class="me-3">Olá, Usuário</span>
+                <i class="bi bi-person-circle fs-4 text-white"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="sidebar" role="navigation" aria-label="Menu principal">
+        <a href="#" tabindex="0"><i class="bi bi-gear-fill"></i> Administrador</a>
+        <a href="cadastroPaciente.php" tabindex="0"><i class="bi bi-person-fill"></i> Paciente</a>
+
+        <a href="loudoTela.php" tabindex="0"><i class="bi bi-journal-text"></i> Laudo</a>
+        <a href="LabImuno.php" tabindex="0"><i class="bi bi-file-medical-fill"></i> Exames Laboratoriais</a>
+        <a href="ListaExames.php" tabindex="0"><i class="bi bi-file-earmark-medical-fill"></i> Exames Solicitados</a>
+        <a href="#" tabindex="0"><i class="bi bi-question-circle"></i> Ajuda</a>
+        <a href="#" tabindex="0"><i class="bi bi-box-arrow-right"></i> Sair</a>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content" role="main">
+        <h2 class="mb-5 text-center" style="color: #092f6b; font-weight: bold;">Dashboard</h2>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-5 col-md-6">
+                <a href="../database/listagem.php" style="text-decoration: none; color: inherit;">
+                    <div class="card-option text-center p-5" tabindex="0">
+                        <i class="bi bi-gear-fill"></i>
+                        <div class="card-title">Administrador</div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-5 col-md-6">
+                <a href="cadastroPaciente.php" style="text-decoration: none; color: inherit;">
+                    <div class="card-option text-center p-5" tabindex="0">
+                        <i class="bi bi-person-fill"></i>
+                        <div class="card-title">Paciente</div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-5 col-md-6">
+                <a href="geradorpdf.php" style="text-decoration: none; color: inherit;">
+                <a href="loudoTela.php" style="text-decoration: none; color: inherit;">
+                    <div class="card-option text-center p-5" tabindex="0">
+                        <i class="bi bi-journal-text"></i>
+                        <div class="card-title">Laudo</div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-5 col-md-6">
+                <a href="LabImuno.php" style="text-decoration: none; color: inherit;">
+                    <div class="card-option text-center p-5" tabindex="0">
+                        <i class="bi bi-file-medical-fill"></i>
+                        <div class="card-title">Exames Laboratoriais</div>
+                    </div>
+                </a>
+            </div>
+
+            
+            <div class="col-lg-5 col-md-6">
+                <a href="ListaExames.php" style="text-decoration: none; color: inherit;">
+                    <div class="card-option text-center p-5" tabindex="0">
+                        <i class="bi bi-file-earmark-medical-fill"></i>
+                        <div class="card-title">Exames Solicitados</div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,191 @@
+
+/* ==================== Paleta de Cores e Fontes ==================== */
+:root {
+    --primary-blue: #092f6b;
+    --secondary-gray: #6c757d;
+    --bg-light: #f4f7f9;
+    --text-dark: #343a40;
+    --sidebar-dark: #092f6b;
+    --hover-blue: #0d3d92;
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+}
+
+body {
+    font-family: 'Roboto', 'Inter', sans-serif; /* Usando ambas as fontes */
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    overflow-x: hidden;
+    margin: 0;
+    padding-top: 56px; /* Para a navbar fixa, se houver */
+}
+
+/* Centraliza o cabeçalho se houver */
+body h3 {
+    text-align: center;
+    padding-top: 20px;
+    padding-left: 0;
+}
+
+/* ==================== Navbar ==================== */
+.navbar {
+    background-color: #092f6b !important; /* Cor branca para a navbar */
+    color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #fff !important;
+}
+
+/* ==================== Sidebar de Navegação ==================== */
+.sidebar, #sidebar {
+    width: 250px; /* Largura padrão de 250px */
+    height: 100vh;
+    background-color: #092f6b;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 56px; /* Começa logo abaixo da navbar */
+    color: #fff;
+    overflow-y: auto;
+    transition: all 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.sidebar .logo, #sidebar .logo {
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.sidebar a, #sidebar .nav-link {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem; /* Tamanho de fonte ajustado */
+    padding: 16px 30px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.2s, color 0.2s;
+    gap: 15px;
+}
+
+.sidebar a:hover,
+.sidebar a:focus,
+#sidebar .nav-link:hover,
+#sidebar .nav-link:focus {
+    background-color: var(--hover-blue);
+    color: #fff;
+}
+
+/* Estilo para o item de menu ativo */
+.sidebar a.active,
+#sidebar .nav-link.active {
+    background-color: var(--hover-blue);
+    color: #fff;
+    border-left: 4px solid #fff;
+    font-weight: bold;
+    padding-left: 26px; /* Ajusta o padding para compensar a borda */
+}
+
+.sidebar a i, #sidebar .nav-link i {
+    font-size: 1.5rem;
+    min-width: 28px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+/* ==================== Conteúdo Principal ==================== */
+.main-content, #content {
+    margin-left: 250px; /* Largura da sidebar */
+    padding: 80px 60px 40px;
+    transition: margin-left 0.3s ease-in-out;
+    width: 100%;
+}
+
+/* ==================== Cards de Opções (Home) ==================== */
+.card-option {
+    border: none;
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease-in-out;
+    height: 100%;
+    background: white;
+    cursor: pointer;
+    text-align: center;
+    padding: 5rem;
+}
+
+.card-option:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-option i {
+    font-size: 3.5rem;
+    color: var(--primary-blue);
+}
+
+.card-title {
+    font-size: 1.5rem;
+    margin-top: 15px;
+    color: var(--dark-blue);
+    font-weight: 600;
+}
+
+/* ==================== Cards de Resumo (Controle de Usuários) ==================== */
+.summary-card {
+    border: none;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: transform 0.2s;
+}
+
+.summary-card:hover {
+    transform: translateY(-5px);
+}
+
+.summary-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #fff;
+}
+
+/* ==================== Tabela de Dados (Controle de Usuários) ==================== */
+.data-table-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+}
+
+/* ==================== Responsividade ==================== */
+@media (max-width: 992px) {
+    .main-content, #content {
+        margin-left: 0;
+        padding: 100px 20px;
+    }
+
+    .sidebar, #sidebar {
+        width: 250px;
+        left: -250px;
+        top: 0;
+        display: none; /* Oculta a sidebar em telas pequenas, você pode implementar um botão para mostrá-la */
+    }
+}

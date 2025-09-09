@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Login</title>
+    <link rel="stylesheet" href="../styles/login.css">
+</head>
+
+<body>
+    <div class="container">
+        <!--Login-->
+        <div class="form-box login">
+            <form action="cadastrar.php">
+                <h2>Login</h2>
+                <div class="input-box">
+                    <input type="text" placeholder="Nome" required>
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" placeholder="Senha" required>
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <div class="forgot-link">
+                    <a href="#">Esqueceu a senha?</a>
+                </div>
+                <button type="submit" class="btn">Entrar</button>
+                <p>ou entrar com </p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="#"><i class="fa-brands fa-google"></i></a>
+                </div>
+            </form>
+        </div>
+
+        <!--Registrar-->
+         <div class="form-box register">
+            <form action="#">
+                <h2>Registrar</h2>
+                <div class="input-box">
+                    <input type="text" placeholder="Nome" required>
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="input-box">
+                    <input type="email" placeholder="E-mail" required>
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" placeholder="Senha" required>
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <button type="submit" class="btn">Cadastrar</button>
+                <p>ou entrar com</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="#"><i class="fa-brands fa-google"></i></a>
+                </div>
+            </form>
+    </div>
+
+        <!--Toggle box-->
+        <div class="toggle-box">
+            <!-- Toggle box  Right  -->
+            <div class="toggle-panel toggle-left">
+                <h2>Olá, Bem-vindo!</h2>
+                <span>Laboratório de Imonologia - LEAC</span>
+                <p>Não tem uma conta?</p>
+                <button class="btn register-btn">Registrar</button>
+            </div>
+
+            <!-- Toggle box left -->
+            <div class="toggle-panel toggle-right">
+                <h2> Bem-Vindo</h2>
+                <p>Você já tem uma conta?</p>
+                <button class="btn login-btn">Entrar</button>
+            </div>
+        </div>
+    </div>
+    <script src="../script/index.js"></script>
+</body>
+
+</html>
