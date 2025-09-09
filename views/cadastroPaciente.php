@@ -77,46 +77,7 @@
                 <input type="text" name="nomeMae" id="nomeMae" class="form-control" placeholder="Digite o nome da mãe" required
                     value="<?= isset($paciente) && $paciente->getNomeMae() ? $paciente->getNomeMae() : '' ?>">
             </div>
-
-            <div class="mb-3">
-                <label class="form-label">Toma algum medicamento contínuo? Qual?</label><br />
-                <input type="radio" value="Sim" id="medicamentoSim" name="medicamento" required
-                    <?= (isset($paciente) && $paciente->getMedicamento() === 'Sim') ? 'checked' : '' ?>>
-                <label for="medicamentoSim">Sim</label><br />
-
-                <input type="radio" value="Não" id="medicamentoNao" name="medicamento" required
-                    <?= (isset($paciente) && $paciente->getMedicamento() === 'Não') ? 'checked' : '' ?>>
-                <label for="medicamentoNao">Não</label><br />
-
-                <input type="text" name="medicamentoNome" id="medicamentoNome" class="form-control mt-2" placeholder="Qual medicamento?"
-                    value="<?= isset($paciente) && $paciente->getMedicamentoNome() ? $paciente->getMedicamentoNome() : '' ?>">
-            </div>
-
-            <div class="mb-3">
-                <label for="patologia" class="form-label">Tem alguma patologia que trata?</label>
-                <input type="text" name="patologia" id="patologia" class="form-control" placeholder="Se sim, qual?" required
-                    value="<?= isset($paciente) && $paciente->getPatologia() ? $paciente->getPatologia() : '' ?>">
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label">Exames solicitados:</label><br />
-                 <?php
-                 $exames = ['Microbiologia', 'Parasitologia', 'Hematologia', 'Bioquímica', 'Urinálise'];
-
-                 // Só tenta carregar exames selecionados se estiver editando um paciente
-                 $examesSelecionados = [];
-
-                 if (isset($paciente) && method_exists($paciente, 'getExamesSolicitados') && $paciente->getExamesSolicitados()) {
-                  $examesSelecionados = explode(',', $paciente->getExamesSolicitados());
-                 }
-
-                 foreach ($exames as $exame) {
-                      $checked = in_array($exame, $examesSelecionados) ? 'checked' : '';
-                      echo "<input type='checkbox' value='$exame' id='ex_$exame' name='examesSolicitados[]' $checked>";
-                  echo "<label for='ex_$exame'>$exame</label><br />";
-                }
-            ?>
-            </div>
+           
             <div class="mt-4">
                 <?php if(isset($paciente) && $paciente->getRegistro()): ?>
                 <button type="submit" name="salvar_edicao" class="btn btn-primary">Salvar Edição</button>
@@ -129,29 +90,6 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const medSim = document.getElementById('medicamentoSim');
-        const medNao = document.getElementById('medicamentoNao');
-        const medNome = document.getElementById('medicamentoNome');
-
-        function toggleMedicamentoNome() {
-            if (medSim.checked) {
-                medNome.style.display = 'block';
-                medNome.setAttribute('required', 'required');
-            } else {
-                medNome.style.display = 'none';
-                medNome.removeAttribute('required');
-                medNome.value = '';
-            }
-        }
-
-        toggleMedicamentoNome();
-        medSim.addEventListener('change', toggleMedicamentoNome);
-        medNao.addEventListener('change', toggleMedicamentoNome);
-    });
-</script>
 
 
 <script>

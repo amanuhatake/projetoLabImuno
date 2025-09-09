@@ -3,7 +3,7 @@ class LabImunoDAO {
     private $conn;
 
     public function __construct() {
-        $this->conn = new mysqli("localhost", "root", "", "laboratorio");
+        $this->conn = new mysqli("localhost", "root", "", "laboratorio",3307);
 
         if ($this->conn->connect_error) {
             die("Conexão falhou: " . $this->conn->connect_error);
